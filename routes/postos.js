@@ -56,16 +56,53 @@ router.post('/',
 // @route       PUT api/postos
 // @desc        Editar um posto
 // @access      Public
-router.put('/:id', (req, res) => {
-    res.send('Editar Posto');
+router.put('/:id',
+[
+    check('name', 'name is required').not().isEmpty(),
+    check('address', 'address is required').not().isEmpty(),
+], async (req, res) => {
+
+    const { name, address, gasprice} = req.body;
+
+    const postoFields = {};
+    if(name) postoFields.name = name;
+    if(address) postoFields.address = address;
+    if(gasprice) postoFields.gasprice = gasprice;
+
+    try {
+        let posto = await Posto.findById(req.params.id);
+        if(!posto) {
+            return res.status(404).json({ msg: "Posto Não encontrado" });
+        }
+
+        posto = await Posto.findByIdAndUpdate(
+            req.params.id,
+            {$set: postoFields},
+            {new: true}
+        );
+
+        res.json(posto);
+    } catch (err) {
+        console.log(err.message);
+        res.status(500).json({msg: "Server Error" })
+    }
 });
 
 // @route       POST api/postos
 // @desc        Remover um posto
 // @access      Public
-router.delete('/:id', (req, res) => {
-    res.send('Remover Posto');
+router.delete('/:id', async (req, res) => {
+    try {
+        let posto = await Posto.findById(req.params.id);
+        if(!posto) {
+            return res.status(404).json({ msg: "Posto Não encontrado" });
+        }
+        await Posto.findByIdAndDelete(req.params.id)
+        res.status(200).json({msg: "Posto Removido com sucesso" })
+    } catch (err) {
+        console.log(err.message);
+        res.status(500).json({msg: "Server Error" })
+    }
 });
-
 
 module.exports = router;
