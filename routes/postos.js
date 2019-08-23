@@ -4,7 +4,7 @@ const { check, validationResult } = require('express-validator');
 const Posto = require('../models/Posto');
 
 // @route       GET api/postos
-// @desc        Pegar os postos
+// @desc        Pegar a lista de postos
 // @access      Public
 router.get('/', async (req, res) => {
     try {
@@ -23,13 +23,14 @@ router.post('/',
 [
     check('name', 'name is required').not().isEmpty(),
     check('address', 'address is required').not().isEmpty(),
+
 ], async (req, res) => {
     const errors = validationResult(req);
     if(!errors.isEmpty()){
         return res.status(400).json({errors: errors.array()});
     }
 
-    const { name, address, gasprice} = req.body;
+    const { name, address, gasolina_comun_price, gasolina_aditivada_price, etanol_price, gnv_price, diesel_price } = req.body;
 
     try {
         let posto = await Posto.findOne({ address });
@@ -41,7 +42,11 @@ router.post('/',
         posto = new Posto({
             name,
             address,
-            gasprice
+            gasolina_comun_price,
+            gasolina_aditivada_price,
+            etanol_price,
+            gnv_price,
+            diesel_price
         });
 
         await posto.save();
@@ -54,7 +59,7 @@ router.post('/',
 });
 
 // @route       PUT api/postos
-// @desc        Editar um posto
+// @desc        Editar informações de um posto
 // @access      Public
 router.put('/:id',
 [
@@ -62,12 +67,16 @@ router.put('/:id',
     check('address', 'address is required').not().isEmpty(),
 ], async (req, res) => {
 
-    const { name, address, gasprice} = req.body;
+    const { name, address, gasolina_comun_price, gasolina_aditivada_price, etanol_price, gnv_price, diesel_price } = req.body;
 
     const postoFields = {};
     if(name) postoFields.name = name;
     if(address) postoFields.address = address;
-    if(gasprice) postoFields.gasprice = gasprice;
+    if(gasolina_comun_price) postoFields.gasolina_comun_price = gasolina_comun_price;
+    if(gasolina_aditivada_price) postoFields.gasolina_aditivada_price = gasolina_aditivada_price;
+    if(etanol_price) postoFields.etanol_price = etanol_price;
+    if(gnv_price) postoFields.gnv_price = gnv_price;
+    if(diesel_price) postoFields.diesel_price = diesel_price;
 
     try {
         let posto = await Posto.findById(req.params.id);
@@ -88,7 +97,7 @@ router.put('/:id',
     }
 });
 
-// @route       POST api/postos
+// @route       DELETE api/postos
 // @desc        Remover um posto
 // @access      Public
 router.delete('/:id', async (req, res) => {
