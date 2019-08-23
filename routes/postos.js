@@ -6,8 +6,14 @@ const Posto = require('../models/Posto');
 // @route       GET api/postos
 // @desc        Pegar os postos
 // @access      Public
-router.get('/', (req, res) => {
-    res.send('Pegar postos');
+router.get('/', async (req, res) => {
+    try {
+        let postos = await Posto.find();
+        res.json(postos);
+    } catch (err) {
+        console.log(err.message);
+        res.status(500).send('Server Error');
+    }
 });
 
 // @route       POST api/postos
@@ -23,17 +29,16 @@ router.post('/',
         return res.status(400).json({errors: errors.array()});
     }
 
-    const { id, name, address, gasprice} = req.body;
+    const { name, address, gasprice} = req.body;
 
     try {
-        let posto = await Posto.findOne({ id });
+        let posto = await Posto.findOne({ address });
 
         if(posto){
-            return res.status(400).json({msg: 'O posto ja existe'});
+            return res.status(400).json({msg: 'O posto já existe'});
         }
-        
+
         posto = new Posto({
-            id,
             name,
             address,
             gasprice

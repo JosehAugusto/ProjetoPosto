@@ -7,7 +7,8 @@ const PostoSchema = mongoose.Schema({
     },
     address: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     gasprice: {
         type: Number,
