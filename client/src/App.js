@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { Redirect, BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
+import Footer from './components/layout/Footer';
 import Postos from './components/postos/Postos';
 import Home from './components/home/Home';
 import { Provider } from 'react-redux';
@@ -18,6 +19,7 @@ function App() {
             <Route exact path='/postos' component={Postos} />
             <Route render={() => <Redirect to={{ pathname: "/" }} />} />
           </Switch>
+          <Footer />
         </Fragment>
       </Router>
     </Provider>

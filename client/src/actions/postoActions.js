@@ -8,9 +8,11 @@ import {
   SEARCH_POSTOS,
   CLEAR_SEARCHED_POSTOS,
 } from './types';
+import axios from 'axios';
+
 
 // Get postos from server
-const getPostos = async () => {
+export const getPostos = () => async dispatch => {
   try {
     const res = await axios.get('/api/postos');
 
@@ -27,7 +29,7 @@ const getPostos = async () => {
 };
 
 // Add Posto
-const addPosto = async posto => {
+export const addPosto = posto => async dispatch => {
   const config = {
     headers: {
       'Content-Type': 'application/json'
@@ -35,7 +37,7 @@ const addPosto = async posto => {
   };
 
   try {
-    const res = await axios.post('/api/contacts', posto, config);
+    const res = await axios.post('/api/postos', posto, config);
 
     dispatch({
       type: ADD_POSTO,

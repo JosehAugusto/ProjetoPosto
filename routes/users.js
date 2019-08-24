@@ -67,7 +67,7 @@ router.put('/:id', (req, res) => {
     res.send('Editar user');
 });
 
-// @route       POST api/users
+// @route       DELETE api/users
 // @desc        Remover um user
 // @access      Public
 router.delete('/:id', (req, res) => {
