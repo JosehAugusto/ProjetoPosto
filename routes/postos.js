@@ -2,6 +2,11 @@ const express = require('express');
 const router = express.Router();
 const { check, validationResult } = require('express-validator');
 const Posto = require('../models/Posto');
+const cron = require('node-cron');
+
+cron.schedule('*/10 * * * *', () => {
+    console.log('passou 10 segundos');
+  });
 
 // @route       GET api/postos
 // @desc        Pegar a lista de postos
