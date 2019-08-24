@@ -13,7 +13,6 @@ import {
     user_error: null,
     login_token: null,
     login_error: null,
-    user_id: null,
   };
   
   export default (state = initialState, action) => {

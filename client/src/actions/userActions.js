@@ -19,7 +19,7 @@ export const addUser = user => async dispatch => {
     };
   
     try {
-      const res = await axios.post('/api/users', posto, config);
+      const res = await axios.post('/api/users', user, config);
 
       dispatch({
         type: ADD_USER,
@@ -69,7 +69,7 @@ export const getUser = user_token => async dispatch => {
     };
   
     try {
-      const res = await axios.post('/api/auth', user, config);
+      const res = await axios.post('/api/auth', config);
 
       dispatch({
         type: GET_USER,
