@@ -12,7 +12,7 @@ import {
 
 const initialState = {
   postos: null,
-  current_posto: null,
+  current_posto: null
 };
 
 export default (state = initialState, action) => {

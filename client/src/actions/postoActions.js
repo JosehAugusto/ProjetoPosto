@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 import {
   GET_POSTOS,
   ADD_POSTO,
@@ -7,10 +9,11 @@ import {
   CLEAR_CURRENT_POSTO,
   SEARCH_POSTOS,
   CLEAR_SEARCHED_POSTOS,
+  POSTO_ERROR
 } from './types';
 
 // Get postos from server
-const getPostos = async () => {
+export const getPostos = () => async dispatch => {
   try {
     const res = await axios.get('/api/postos');
 
@@ -27,7 +30,7 @@ const getPostos = async () => {
 };
 
 // Add Posto
-const addPosto = async posto => {
+export const addLog = posto => async dispatch => {
   const config = {
     headers: {
       'Content-Type': 'application/json'
