@@ -3,6 +3,13 @@ const router = express.Router();
 const { check, validationResult } = require('express-validator');
 const Posto = require('../models/Posto');
 
+//var cron = require('node-cron');
+ 
+//cron.schedule('*/5 * * * * *', () => {
+//    console.log('Passou 5 segundos');
+//});
+
+
 // @route       GET api/postos
 // @desc        Pegar a lista de postos
 // @access      Public
@@ -30,7 +37,7 @@ router.post('/',
         return res.status(400).json({errors: errors.array()});
     }
 
-    const { name, address, gasolina_comun_price, gasolina_aditivada_price, etanol_price, gnv_price, diesel_price } = req.body;
+    const { name, address, gasolina_comun_price, gasolina_aditivada_price, etanol_price, gnv_price, diesel_price, alcool_price } = req.body;
 
     try {
         let posto = await Posto.findOne({ address });
@@ -46,7 +53,8 @@ router.post('/',
             gasolina_aditivada_price,
             etanol_price,
             gnv_price,
-            diesel_price
+            diesel_price,
+            alcool_price
         });
 
         await posto.save();
@@ -67,7 +75,7 @@ router.put('/:id',
     check('address', 'address is required').not().isEmpty(),
 ], async (req, res) => {
 
-    const { name, address, gasolina_comun_price, gasolina_aditivada_price, etanol_price, gnv_price, diesel_price } = req.body;
+    const { name, address, gasolina_comun_price, gasolina_aditivada_price, etanol_price, gnv_price, diesel_price, alcool_price } = req.body;
 
     const postoFields = {};
     if(name) postoFields.name = name;
@@ -77,6 +85,7 @@ router.put('/:id',
     if(etanol_price) postoFields.etanol_price = etanol_price;
     if(gnv_price) postoFields.gnv_price = gnv_price;
     if(diesel_price) postoFields.diesel_price = diesel_price;
+    if(alcool_price) postoFields.alcool_price = alcool_price;
 
     try {
         let posto = await Posto.findById(req.params.id);
