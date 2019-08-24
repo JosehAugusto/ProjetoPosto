@@ -3,18 +3,61 @@ const router = express.Router();
 const { check, validationResult } = require('express-validator');
 const Posto = require('../models/Posto');
 var cron = require('node-cron');
- 
+
+
+//Call updateAllGasPrices() every day
 cron.schedule('*/10 * * * * *', async () => {
     let postos = await Posto.find();
-   postos.forEach(showGasPrices);
+   postos.forEach(updateAllGasPrices);
 });
 
-async function showGasPrices(item){
+// Update all gas prices of the DB
+async function updateAllGasPrices(item){
 
-    item.gasolina_comun_price.push(item.gasolina_comun_price[item.gasolina_comun_price.length - 1]);
-
+    if(item.gasolina_comun_price.length >= 1){
+        item.gasolina_comun_price.push(item.gasolina_comun_price[item.gasolina_comun_price.length - 1]);
+        if(item.gasolina_comun_price.length >= 31){
+            item.gasolina_comun_price.shift();
+        }
+    }
+    if(item.gasolina_aditivada_price.length >= 1){
+        item.gasolina_aditivada_price.push(item.gasolina_aditivada_price[item.gasolina_aditivada_price.length - 1]);
+        if(item.gasolina_aditivada_price.length >= 31){
+            item.gasolina_aditivada_price.shift();
+        }
+    }
+    if(item.etanol_price.length >= 1){
+        item.etanol_price.push(item.etanol_price[item.etanol_price.length - 1]);
+        if(item.etanol_price.length >= 31){
+            item.etanol_price.shift();
+        }
+    }
+    if(item.gnv_price.length >= 1){
+        item.gnv_price.push(item.gnv_price[item.gnv_price.length - 1]);
+        if(item.gnv_price.length >= 31){
+            item.gnv_price.shift();
+        }
+    }
+    if(item.diesel_price.length >= 1){
+        item.diesel_price.push(item.diesel_price[item.diesel_price.length - 1]);
+        if(item.diesel_price.length >= 31){
+            item.diesel_price.shift();
+        }
+    }
+    if(item.alcool_price.length >= 1){
+        item.alcool_price.push(item.alcool_price[item.alcool_price.length - 1]);
+        if(item.alcool_price.length >= 31){
+            item.alcool_price.shift();
+        }
+    }
+    
     const gasPricesFields = {};
     gasPricesFields.gasolina_comun_price = item.gasolina_comun_price;
+    gasPricesFields.gasolina_aditivada_price = item.gasolina_aditivada_price;
+    gasPricesFields.etanol_price = item.etanol_price;
+    gasPricesFields.gnv_price = item.gnv_price;
+    gasPricesFields.alcool_price = item.alcool_price;
+    gasPricesFields.diesel_price = item.diesel_price;
 
     await Posto.findByIdAndUpdate(
         item.id,

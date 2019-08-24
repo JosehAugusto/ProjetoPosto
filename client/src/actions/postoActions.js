@@ -11,6 +11,8 @@ import {
   CLEAR_SEARCHED_POSTOS,
   POSTO_ERROR
 } from './types';
+import axios from 'axios';
+
 
 // Get postos from server
 export const getPostos = () => async dispatch => {
@@ -30,7 +32,8 @@ export const getPostos = () => async dispatch => {
 };
 
 // Add Posto
-export const addLog = posto => async dispatch => {
+
+export const addPosto = posto => async dispatch => {
   const config = {
     headers: {
       'Content-Type': 'application/json'
@@ -38,7 +41,7 @@ export const addLog = posto => async dispatch => {
   };
 
   try {
-    const res = await axios.post('/api/contacts', posto, config);
+    const res = await axios.post('/api/postos', posto, config);
 
     dispatch({
       type: ADD_POSTO,
