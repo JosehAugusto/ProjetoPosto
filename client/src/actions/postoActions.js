@@ -11,7 +11,6 @@ import {
   CLEAR_SEARCHED_POSTOS,
   POSTO_ERROR
 } from './types';
-import axios from 'axios';
 
 
 // Get postos from server

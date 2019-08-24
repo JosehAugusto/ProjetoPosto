@@ -34,7 +34,7 @@ export const addUser = user => async dispatch => {
   };
 
 // log a User
-export const logUser = () => async dispatch => {
+export const logUser = (email, password) => async dispatch => {
     const config = {
       headers: {
         'Content-Type': 'application/json'
@@ -42,7 +42,10 @@ export const logUser = () => async dispatch => {
     };
   
     try {
-      const res = await axios.post('/api/users', user, config);
+      const res = await axios.post('/api/auth', {
+        email: email,
+        password: password
+      }, config);
 
       dispatch({
         type: LOG_USER,
@@ -66,7 +69,7 @@ export const getUser = user_token => async dispatch => {
     };
   
     try {
-      const res = await axios.post('/api/users', user, config);
+      const res = await axios.post('/api/auth', user, config);
 
       dispatch({
         type: GET_USER,

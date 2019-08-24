@@ -3,7 +3,6 @@ import { Redirect, BrowserRouter as Router, Switch, Route } from 'react-router-d
 import Navbar from './components/layout/Navbar';
 import PostosPage from './components/postos/PostosPage';
 import Footer from './components/layout/Footer';
-import PostosPage from './components/postos/PostosPage';
 import Home from './components/home/Home';
 import { Provider } from 'react-redux';
 import store from './store';
