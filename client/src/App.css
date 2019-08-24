@@ -1,0 +1,48 @@
+.bg-dark {
+  background-color: #222222 !important;
+}
+
+.bg-primary {
+  background-color: #2980B9 !important;
+}
+
+.bg-success {
+  background-color: #27AE60 !important;
+}
+
+.bg-purple {
+  background-color: #9999ff;
+}
+
+.container-stretched {
+  min-width: 75%;
+}
+
+.price-variation-container {
+  border-bottom: 1px solid #ccc;
+}
+
+.fuel-label {
+  font-size: 1.5REM;
+}
+
+.small-percentage {
+  font-size: 0.9REM;
+}
+
+.big-percentage {
+  font-size: 2REM;
+}
+
+.form-container {
+  background-color: #F8F8F8;
+  max-height: 450px;
+}
+
+.card {
+  background-color: #F0F0F0;
+}
+
+.number-input {
+  max-width: 85px;
+}
