@@ -2,13 +2,25 @@ const express = require('express');
 const router = express.Router();
 const { check, validationResult } = require('express-validator');
 const Posto = require('../models/Posto');
-
-//var cron = require('node-cron');
+var cron = require('node-cron');
  
-//cron.schedule('*/5 * * * * *', () => {
-//    console.log('Passou 5 segundos');
-//});
+cron.schedule('*/10 * * * * *', async () => {
+    let postos = await Posto.find();
+   postos.forEach(showGasPrices);
+});
 
+async function showGasPrices(item){
+
+    item.gasolina_comun_price.push(item.gasolina_comun_price[item.gasolina_comun_price.length - 1]);
+
+    const gasPricesFields = {};
+    gasPricesFields.gasolina_comun_price = item.gasolina_comun_price;
+
+    await Posto.findByIdAndUpdate(
+        item.id,
+        {$set: gasPricesFields},
+    );
+}
 
 // @route       GET api/postos
 // @desc        Pegar a lista de postos
