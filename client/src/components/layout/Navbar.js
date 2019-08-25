@@ -23,7 +23,7 @@ const Navbar = () => {
             </ul>
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">
-                <Link to='/' className="nav-link">Registro</Link>
+                <Link to='/' className="nav-link" data-toggle="modal" data-target="#registerModal">Registro</Link>
               </li>
               <li className="nav-item">
                 <Link to='/' className="nav-link">Login</Link>
