@@ -14,4 +14,7 @@ export const USER_ERROR = 'USER_ERROR';
 export const GET_USER = 'GET_USER';
 export const LOG_USER = 'LOG_USER';
 export const LOGIN_ERROR = 'LOGINERROR';
+export const SET_CURRENT_DAY_AVGS = 'SET_DAY_AVG';
+export const SET_PREVIOS_DAY_AVGS = 'SET_PREVIOS_DAY_AVG';
+
 

@@ -3,6 +3,7 @@ import { Redirect, BrowserRouter as Router, Switch, Route } from 'react-router-d
 import Navbar from './components/layout/Navbar';
 import PostosPage from './components/postos/PostosPage';
 import Register from './components/login/Register';
+import Login from './components/login/Login';
 import Footer from './components/layout/Footer';
 import Home from './components/home/Home';
 import { Provider } from 'react-redux';
@@ -21,6 +22,7 @@ function App() {
             <Route render={() => <Redirect to={{ pathname: "/" }} />} />
           </Switch>
           <Register/>
+          <Login />
           <Footer />
         </Fragment>
       </Router>

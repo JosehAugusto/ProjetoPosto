@@ -26,7 +26,7 @@ const Navbar = () => {
                 <Link to='/' className="nav-link" data-toggle="modal" data-target="#registerModal">Registro</Link>
               </li>
               <li className="nav-item">
-                <Link to='/' className="nav-link">Login</Link>
+                <Link to='/' className="nav-link" data-toggle="modal" data-target="#loginModal">Login</Link>
               </li>
             </ul>
           </div>

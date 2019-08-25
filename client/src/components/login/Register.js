@@ -3,11 +3,12 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { addUser } from '../../actions/userActions';
 
+
 const Register = ({addUser}) => {
 
-    const [email, setEmail] = useState('');
-    const [name, setName] = useState('');
-    const [password, setPassword] = useState('');
+    let [email, setEmail] = useState('');
+    let [name, setName] = useState('');
+    let [password, setPassword] = useState('');
 
 
     const handleSubmit = (event) => {
@@ -18,7 +19,6 @@ const Register = ({addUser}) => {
             name,
             password,
           });
-
 
           setEmail('');
           setName('');
@@ -40,22 +40,22 @@ const Register = ({addUser}) => {
                 <form id="registerForm" onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label>Email address</label>
-                        <input type="email" className="form-control" id="InputEmail" onChange={e => setEmail(e.target.value)} aria-describedby="emailHelp" placeholder="Enter email"></input>
+                        <input type="email" className="form-control" id="InputEmail" value={email} onChange={e => setEmail(e.target.value)} aria-describedby="emailHelp" placeholder="Enter email"></input>
                         <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
                     </div>
                     <div className="form-group">
                         <label>Username</label>
-                        <input type="text" className="form-control" id="InputUsername" onChange={e => setName(e.target.value)} placeholder="Username"></input>
+                        <input type="text" className="form-control" id="InputUsername" value={name} onChange={e => setName(e.target.value)} placeholder="Username"></input>
                     </div>
                     <div className="form-group">
                         <label>Password</label>
-                        <input type="password" className="form-control" id="InputPassword" onChange={e => setPassword(e.target.value)} placeholder="Password"></input>
+                        <input type="password" className="form-control" id="InputPassword" value={password} onChange={e => setPassword(e.target.value)} placeholder="Password"></input>
                     </div>
                 </form>
             </div>
             <div className="modal-footer">
                 <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit"className="btn btn-primary" form="registerForm" value="Submit">Salvar</button>
+                <button type="submit"className="btn btn-primary" form="registerForm" value="Submit" >Salvar</button>
             </div>
             </div>
         </div>
