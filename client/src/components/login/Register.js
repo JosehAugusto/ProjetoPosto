@@ -1,19 +1,19 @@
 import React, { useState, Fragment } from 'react'
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { addUser } from '../../actions/userActions';
+import { addNewUser } from '../../actions/userActions';
 
-const Register = ({addUser}) => {
+const Register = ({addNewUser}) => {
 
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
 
 
-    const onSubmit = event => {
+    const handleSubmit = (event) => {
         event.preventDefault();
 
-        addUser({
+        addNewUser({
             email,
             name,
             password,
@@ -37,7 +37,7 @@ const Register = ({addUser}) => {
                 </button>
             </div>
             <div className="modal-body">
-                <form id="registerForm" onSubmit={onSubmit}>
+                <form id="registerForm" onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label>Email address</label>
                         <input type="email" className="form-control" id="InputEmail" onChange={e => setEmail(e.target.value)} aria-describedby="emailHelp" placeholder="Enter email"></input>
@@ -65,10 +65,10 @@ const Register = ({addUser}) => {
 }
 
 Register.propTypes = {
-  addUser: PropTypes.func.isRequired
+  addNewUser: PropTypes.func.isRequired
 };
 
 export default connect(
   null,
-  { addUser }
+  { addNewUser }
 )(Register);
