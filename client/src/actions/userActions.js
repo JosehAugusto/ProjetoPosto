@@ -19,13 +19,14 @@ export const addUser = user => async dispatch => {
     };
   
     try {
-      const res = await axios.post('/api/users', user, config);
-
+      const res = await axios.post('/api/users', user , config);
+      
       dispatch({
         type: ADD_USER,
         payload: res.data
       });
     } catch (err) {
+      console.log(err.msg);
       dispatch({
         type: USER_ERROR,
         payload: err.response.msg
@@ -60,7 +61,7 @@ export const logUser = (email, password) => async dispatch => {
   };
 
   // Get a User info
-export const getUser = user_token => async dispatch => {
+export const getUser = (user_token) => async dispatch => {
     const config = {
       headers: {
         'Content-Type': 'application/json',
@@ -69,7 +70,7 @@ export const getUser = user_token => async dispatch => {
     };
   
     try {
-      const res = await axios.post('/api/auth', config);
+      const res = await axios.get('/api/auth', config);
 
       dispatch({
         type: GET_USER,

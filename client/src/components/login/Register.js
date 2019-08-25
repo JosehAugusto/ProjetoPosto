@@ -1,17 +1,32 @@
-import React from 'react'
+import React, { useState, Fragment } from 'react'
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { addUser } from '../../actions/userActions';
 
-const Register = user => {
+const Register = ({addUser}) => {
 
-    function handleSubmit(event) {
+    const [email, setEmail] = useState('');
+    const [name, setName] = useState('');
+    const [password, setPassword] = useState('');
+
+
+    const onSubmit = event => {
         event.preventDefault();
-        console.log(event.target[1].value);
+
+        addUser({
+            email,
+            name,
+            password,
+          });
+
+
+          setEmail('');
+          setName('');
+          setPassword('');
     }
 
     return (
-    <div>
+    <Fragment>
         <div className="modal fade" id="registerModal" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
         <div className="modal-dialog" role="document">
             <div className="modal-content">
@@ -22,43 +37,38 @@ const Register = user => {
                 </button>
             </div>
             <div className="modal-body">
-                <form id="registerForm" onSubmit={handleSubmit}>
+                <form id="registerForm" onSubmit={onSubmit}>
                     <div className="form-group">
                         <label>Email address</label>
-                        <input type="email" className="form-control" id="InputEmail" aria-describedby="emailHelp" placeholder="Enter email"></input>
+                        <input type="email" className="form-control" id="InputEmail" onChange={e => setEmail(e.target.value)} aria-describedby="emailHelp" placeholder="Enter email"></input>
                         <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
                     </div>
                     <div className="form-group">
                         <label>Username</label>
-                        <input type="text" className="form-control" id="InputUsername" placeholder="Username"></input>
+                        <input type="text" className="form-control" id="InputUsername" onChange={e => setName(e.target.value)} placeholder="Username"></input>
                     </div>
                     <div className="form-group">
                         <label>Password</label>
-                        <input type="password" className="form-control" id="InputPassword" placeholder="Password"></input>
+                        <input type="password" className="form-control" id="InputPassword" onChange={e => setPassword(e.target.value)} placeholder="Password"></input>
                     </div>
                 </form>
             </div>
             <div className="modal-footer">
                 <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" className="btn btn-primary" form="registerForm">Salvar</button>
+                <button type="submit"className="btn btn-primary" form="registerForm" value="Submit">Salvar</button>
             </div>
             </div>
         </div>
         </div>
-    </div>
+    </Fragment>
   )
 }
 
 Register.propTypes = {
-  user: PropTypes.object.isRequired,
   addUser: PropTypes.func.isRequired
 };
 
-const mapStateToProps = state => ({
-  user: state.user
-});
-
 export default connect(
-  mapStateToProps,
+  null,
   { addUser }
 )(Register);
