@@ -1,8 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { deletePosto } from '../../actions/postoActions';
 
-const PostoItem = ({ posto }) => {
+const PostoItem = ({ posto, deletePosto }) => {
   return (
     <div className="card shadow-lg mb-2">
       <div className="card-body">
@@ -41,7 +42,7 @@ const PostoItem = ({ posto }) => {
                 Diesel
                   </label>
               <div>
-                {posto.diesel_price[posto.diesel_price.length - 1] ? 'R$' + posto.diesel_price[posto.diesel_price.length - 1] : 'Não Informado'}
+                {posto.diesel_price[posto.diesel_price.length - 1] ? 'R$ ' + posto.diesel_price[posto.diesel_price.length - 1] : 'Não Informado'}
               </div>
             </td>
             <td>
@@ -55,7 +56,7 @@ const PostoItem = ({ posto }) => {
             <td>
               <label className="font-weight-bold">
                 GNV
-                  </label>
+              </label>
               <div>
                 {posto.gnv_price[posto.gnv_price.length - 1] ? 'R$ ' + posto.gnv_price[posto.gnv_price.length - 1] : 'Não Informado'}
               </div>
@@ -64,8 +65,8 @@ const PostoItem = ({ posto }) => {
         </table>
 
         <div className="d-flex justify-content-between">
-          <a href="#" className="btn btn-primary"><i className="fas fa-edit mr-2"></i>Editar</a>
-          <a href="#" className="btn btn-danger"><i className="fas fa-trash mr-2"></i>Remover</a>
+          <a href='#!' className="btn btn-primary"><i className="fas fa-edit mr-2"></i>Editar</a>
+          <a href="#!" onClick={() => deletePosto(posto._id)} className="btn btn-danger"><i className="fas fa-trash mr-2"></i>Remover</a>
         </div>
       </div>
     </div>
@@ -75,8 +76,9 @@ const PostoItem = ({ posto }) => {
 
 PostoItem.propTypes = {
   posto: PropTypes.object.isRequired,
+  deletePosto: PropTypes.func.isRequired,
 };
 
 export default connect(
-  null,
+  null, { deletePosto }
 )(PostoItem);

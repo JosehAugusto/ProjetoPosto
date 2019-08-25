@@ -53,3 +53,20 @@ export const addPosto = posto => async dispatch => {
     });
   }
 };
+
+// Delete Posto
+export const deletePosto = id => async dispatch => {
+  try {
+    await axios.delete(`/api/postos/${id}`);
+
+    dispatch({
+      type: DELETE_POSTO,
+      payload: id
+    });
+  } catch (err) {
+    dispatch({
+      type: POSTO_ERROR,
+      payload: err.response.msg
+    });
+  }
+};

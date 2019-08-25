@@ -27,6 +27,14 @@ export default (state = initialState, action) => {
         ...state,
         postos: [...state.postos, action.payload]
       };
+    case DELETE_POSTO:
+      return {
+        ...state,
+        postos: state.postos.filter(
+          posto => posto._id !== action.payload
+        ),
+        loading: false
+      };
     case POSTO_ERROR:
       console.error(action.payload);
       return {

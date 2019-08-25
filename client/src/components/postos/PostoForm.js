@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { addPosto, getPostos } from '../../actions/postoActions';
+import { addPosto } from '../../actions/postoActions';
 
-let PostoForm = ({ addPosto, getPostos }) => {
+let PostoForm = ({ addPosto }) => {
 
   let [name, setName] = useState('');
   let [address, setAddress] = useState('');
@@ -18,37 +18,41 @@ let PostoForm = ({ addPosto, getPostos }) => {
     if (name === '' || address === '' || gas_com_price === '' || gas_adi_price === '' || eta_price === '' || gnvf_price === '' || die_price === '' || alc_price === '') {
       // Favor preencher todos os campos
     } else {
+      if (gas_com_price < 0 || gas_adi_price < 0 || eta_price < 0 || gnvf_price < 0 || die_price < 0 || alc_price < 0) {
+        // Numeros precisam ser positivos
+      } else {
+        const gasolina_comun_price = [gas_com_price];
+        const gasolina_aditivada_price = [gas_adi_price];
+        const etanol_price = [eta_price];
+        const gnv_price = [gnvf_price];
+        const diesel_price = [die_price];
+        const alcool_price = [alc_price];
 
-      const gasolina_comun_price = [gas_com_price];
-      const gasolina_aditivada_price = [gas_adi_price];
-      const etanol_price = [eta_price];
-      const gnv_price = [gnvf_price];
-      const diesel_price = [die_price];
-      const alcool_price = [alc_price];
 
+        addPosto({
+          name,
+          address,
+          gasolina_comun_price,
+          gasolina_aditivada_price,
+          etanol_price,
+          gnv_price,
+          diesel_price,
+          alcool_price
+        });
 
-      addPosto({
-        name,
-        address,
-        gasolina_comun_price,
-        gasolina_aditivada_price,
-        etanol_price,
-        gnv_price,
-        diesel_price,
-        alcool_price
-      });
+        // Mensagem dizendo que um posto foi adicionado
 
-      // Mensagem dizendo que um posto foi adicionado
+        // Clear Fields
+        setName('');
+        setAddress('');
+        setGasComPrice('');
+        setGasAdiPrice('');
+        setEtaPrice('');
+        setGnvfPrice('');
+        setDiePrice('');
+        setAlcPrice('');
+      }
 
-      // Clear Fields
-      setName('');
-      setAddress('');
-      setGasComPrice('');
-      setGasAdiPrice('');
-      setEtaPrice('');
-      setGnvfPrice('');
-      setDiePrice('');
-      setAlcPrice('');
     }
   };
 
@@ -135,11 +139,10 @@ let PostoForm = ({ addPosto, getPostos }) => {
 }
 
 PostoForm.propTypes = {
-  addPosto: PropTypes.func.isRequired,
-  getPostos: PropTypes.func.isRequired
+  addPosto: PropTypes.func.isRequired
 };
 
 export default connect(
   null,
-  { addPosto, getPostos }
+  { addPosto }
 )(PostoForm);
