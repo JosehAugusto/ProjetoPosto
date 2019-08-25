@@ -1,9 +1,9 @@
 import React, { useState, Fragment } from 'react'
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { addNewUser } from '../../actions/userActions';
+import { addUser } from '../../actions/userActions';
 
-const Register = ({addNewUser}) => {
+const Register = ({addUser}) => {
 
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
@@ -13,7 +13,7 @@ const Register = ({addNewUser}) => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        addNewUser({
+        addUser({
             email,
             name,
             password,
@@ -65,10 +65,10 @@ const Register = ({addNewUser}) => {
 }
 
 Register.propTypes = {
-  addNewUser: PropTypes.func.isRequired
+  addUser: PropTypes.func.isRequired
 };
 
 export default connect(
   null,
-  { addNewUser }
+  { addUser }
 )(Register);
