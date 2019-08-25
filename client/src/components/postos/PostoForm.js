@@ -1,20 +1,34 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { addPosto } from '../../actions/postoActions';
+import { addPosto, updatePosto, clearCurrentPosto } from '../../actions/postoActions';
 
-let PostoForm = ({ addPosto }) => {
+const PostoForm = ({ current_posto, addPosto, updatePosto, clearCurrentPosto }) => {
 
-  let [name, setName] = useState('');
-  let [address, setAddress] = useState('');
-  let [gas_com_price, setGasComPrice] = useState('');
-  let [gas_adi_price, setGasAdiPrice] = useState('');
-  let [eta_price, setEtaPrice] = useState('');
-  let [gnvf_price, setGnvfPrice] = useState('');
-  let [die_price, setDiePrice] = useState('');
-  let [alc_price, setAlcPrice] = useState('');
+  const [name, setName] = useState('');
+  const [address, setAddress] = useState('');
+  const [gas_com_price, setGasComPrice] = useState('');
+  const [gas_adi_price, setGasAdiPrice] = useState('');
+  const [eta_price, setEtaPrice] = useState('');
+  const [gnvf_price, setGnvfPrice] = useState('');
+  const [die_price, setDiePrice] = useState('');
+  const [alc_price, setAlcPrice] = useState('');
 
-  let onSubmit = () => {
+  useEffect(() => {
+    if (current_posto) {
+      setName(current_posto.name);
+      setAddress(current_posto.address);
+      setGasComPrice(current_posto.gasolina_comun_price[current_posto.gasolina_comun_price.length - 1] ? current_posto.gasolina_comun_price[current_posto.gasolina_comun_price.length - 1] : '');
+      setGasAdiPrice(current_posto.gasolina_aditivada_price[current_posto.gasolina_aditivada_price.length - 1] ? current_posto.gasolina_aditivada_price[current_posto.gasolina_aditivada_price.length - 1] : '');
+      setEtaPrice(current_posto.etanol_price[current_posto.etanol_price.length - 1] ? current_posto.etanol_price[current_posto.etanol_price.length - 1] : '');
+      setGnvfPrice(current_posto.gnv_price[current_posto.gnv_price.length - 1] ? current_posto.gnv_price[current_posto.gnv_price.length - 1] : '');
+      setDiePrice(current_posto.diesel_price[current_posto.diesel_price.length - 1] ? current_posto.diesel_price[current_posto.diesel_price.length - 1] : '');
+      setAlcPrice(current_posto.alcool_price[current_posto.alcool_price.length - 1] ? current_posto.alcool_price[current_posto.alcool_price.length - 1] : '');
+
+    }
+  }, [current_posto]);
+
+  const onSubmit = () => {
     if (name === '' || address === '' || gas_com_price === '' || gas_adi_price === '' || eta_price === '' || gnvf_price === '' || die_price === '' || alc_price === '') {
       // Favor preencher todos os campos
     } else {
@@ -28,41 +42,65 @@ let PostoForm = ({ addPosto }) => {
         const diesel_price = [die_price];
         const alcool_price = [alc_price];
 
+        if (current_posto) {
+          const updatedPosto = {
+            _id: current_posto._id,
+            name,
+            gasolina_comun_price,
+            gasolina_aditivada_price,
+            etanol_price,
+            gnv_price,
+            diesel_price,
+            alcool_price
+          };
 
-        addPosto({
-          name,
-          address,
-          gasolina_comun_price,
-          gasolina_aditivada_price,
-          etanol_price,
-          gnv_price,
-          diesel_price,
-          alcool_price
-        });
+          updatePosto(updatedPosto);
 
-        console.log("addPosto called");
+        } else {
+          addPosto({
+            name,
+            address,
+            gasolina_comun_price,
+            gasolina_aditivada_price,
+            etanol_price,
+            gnv_price,
+            diesel_price,
+            alcool_price
+          });
+        }
 
         // Mensagem dizendo que um posto foi adicionado
 
         // Clear Fields
-        setName('');
-        setAddress('');
-        setGasComPrice('');
-        setGasAdiPrice('');
-        setEtaPrice('');
-        setGnvfPrice('');
-        setDiePrice('');
-        setAlcPrice('');
+        clearAllFields();
       }
 
     }
   };
 
+  const clearCurrent = () => {
+    clearCurrentPosto();
+    clearAllFields();
+  }
+
+  // Clear Fields
+  const clearAllFields = () => {
+    // Clear Fields
+    setName('');
+    setAddress('');
+    setGasComPrice('');
+    setGasAdiPrice('');
+    setEtaPrice('');
+    setGnvfPrice('');
+    setDiePrice('');
+    setAlcPrice('');
+  }
+
 
   return (
     <form className="py-2 ">
       <div className="text-center">
-        <h5 className="display-5"> Novo Posto </h5>
+        <h5 className="display-5"> {current_posto ? 'Editar' : 'Novo'} Posto </h5>
       </div>
       <div className="form-group">
         <label className="font-weight-normal">Nome</label>
@@ -132,19 +170,29 @@ let PostoForm = ({ addPosto }) => {
         </div>
       </div>
       <div className="text-center my-2">
-        <a href='#!' onClick={onSubmit} className='btn btn-dark'>
-          <i className="fas fa-plus-circle mr-2"></i>Adicionar
+        <a href='#!' onClick={onSubmit} className='btn btn-dark mr-2'>
+          <i className={current_posto ? 'fas fa-edit mr-2' : 'fas fa-plus-circle mr-2'}></i>{current_posto ? 'Editar' : 'Adicionar'}
         </a>
+        {current_posto ? <a href='#!' onClick={clearCurrent} className='btn btn-info'>
+          Cancelar
+        </a> : null}
       </div>
     </form>
   )
 }
 
 PostoForm.propTypes = {
+  current_posto: PropTypes.object.isRequired,
+  clearCurrentPosto: PropTypes.func.isRequired,
+  updatePosto: PropTypes.func.isRequired,
   addPosto: PropTypes.func.isRequired
 };
 
+const mapStateToProps = state => ({
+  current_posto: state.posto.current_posto
+});
+
 export default connect(
-  null,
-  { addPosto }
+  mapStateToProps,
+  { updatePosto, addPosto, clearCurrentPosto }
 )(PostoForm);

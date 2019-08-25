@@ -1,9 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { deletePosto } from '../../actions/postoActions';
+import { deletePosto, setCurrentPosto } from '../../actions/postoActions';
 
-const PostoItem = ({ posto, deletePosto }) => {
+const PostoItem = ({ posto, deletePosto, setCurrentPosto }) => {
   return (
     <div className="card shadow-lg mb-2">
       <div className="card-body">
@@ -67,7 +67,7 @@ const PostoItem = ({ posto, deletePosto }) => {
         </table>
 
         <div className="d-flex justify-content-between">
-          <a href='#!' className="btn btn-primary"><i className="fas fa-edit mr-2"></i>Editar</a>
+          <a href='#!' onClick={() => setCurrentPosto(posto)} className="btn btn-primary"><i className="fas fa-edit mr-2"></i>Editar</a>
           <a href="#!" onClick={() => deletePosto(posto._id)} className="btn btn-danger"><i className="fas fa-trash mr-2"></i>Remover</a>
         </div>
       </div>
@@ -79,8 +79,9 @@ const PostoItem = ({ posto, deletePosto }) => {
 PostoItem.propTypes = {
   posto: PropTypes.object.isRequired,
   deletePosto: PropTypes.func.isRequired,
+  setCurrentPosto: PropTypes.func.isRequired
 };
 
 export default connect(
-  null, { deletePosto }
+  null, { deletePosto, setCurrentPosto }
 )(PostoItem);

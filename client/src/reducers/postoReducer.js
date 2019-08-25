@@ -13,7 +13,8 @@ import {
 const initialState = {
   postos: null,
   current_posto: null,
-  searched_postos: null
+  searched_postos: null,
+  current_posto: null
 };
 
 export default (state = initialState, action) => {
@@ -47,10 +48,28 @@ export default (state = initialState, action) => {
         ...state,
         searched_postos: state.postos.filter(posto => posto.name.toLowerCase().includes(action.payload.toLowerCase()) || posto.address.toLowerCase().includes(action.payload.toLowerCase()))
       };
+    case UPDATE_POSTO:
+      return {
+        ...state,
+        postos: state.postos.map(posto =>
+          posto._id === action.payload._id ? action.payload : posto
+        ),
+        current_posto: null
+      };
     case CLEAR_SEARCHED_POSTOS:
       return {
         ...state,
         searched_postos: null
+      };
+    case SET_CURRENT_POSTO:
+      return {
+        ...state,
+        current_posto: action.payload
+      };
+    case CLEAR_CURRENT_POSTO:
+      return {
+        ...state,
+        current_posto: null
       };
     default:
       return state;
