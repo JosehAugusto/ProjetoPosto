@@ -11,7 +11,8 @@ import {
   const initialState = {
     user: null,
     login_token: null,
-    user_error: null
+    user_error: null,
+    login_error: null
   };
   
   export default (state = initialState, action) => {
@@ -29,7 +30,7 @@ import {
       case ADD_USER:
         return {
           ...state,
-          login_token: [...state.login_token, action.payload]
+          login_token: action.payload
         };
       case USER_ERROR:
         console.error(action.payload);

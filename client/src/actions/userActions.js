@@ -20,13 +20,11 @@ export const addUser = user => async dispatch => {
 
   try {
     const res = await axios.post('/api/users', user, config);
-    console.log(res.data);
     dispatch({
       type: ADD_USER,
       payload: res.data
     });
   } catch (err) {
-    console.log(err);
     dispatch({
       type: USER_ERROR,
       payload: err.response.msg
@@ -53,6 +51,7 @@ export const logUser = (email, password) => async dispatch => {
       payload: res.data
     });
   } catch (err) {
+    
     dispatch({
       type: LOGIN_ERROR,
       payload: err.response.msg
