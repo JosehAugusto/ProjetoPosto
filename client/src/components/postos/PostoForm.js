@@ -111,7 +111,7 @@ const PostoForm = ({ current_posto, addPosto, updatePosto, clearCurrentPosto }) 
         <label>Endereço</label>
         <input type="text" name='address' value={address} onChange={e => setAddress(e.target.value)} className="form-control" placeholder="Digite o endereço do posto..." />
       </div>
-      <div className="d-flex justify-content-between">
+      <div className="d-flex justify-content-around">
         <div className="form-group">
           <label>Gasolina Comum</label>
           <div className="input-group">
@@ -130,6 +130,8 @@ const PostoForm = ({ current_posto, addPosto, updatePosto, clearCurrentPosto }) 
             <input type="number" name='alc_price' value={alc_price} onChange={e => setAlcPrice(e.target.value)} className="form-control number-input" min="0" />
           </div>
         </div>
+      </div>
+      <div className="d-flex justify-content-around">
         <div className="form-group">
           <label>Etanol</label>
           <div className="input-group">
@@ -139,8 +141,6 @@ const PostoForm = ({ current_posto, addPosto, updatePosto, clearCurrentPosto }) 
             <input type="number" name='eta_price' value={eta_price} onChange={e => setEtaPrice(e.target.value)} className="form-control number-input" min="0" />
           </div>
         </div>
-      </div>
-      <div className="d-flex justify-content-between">
         <div className="form-group">
           <label>Diesel</label>
           <div className="input-group">
@@ -150,6 +150,8 @@ const PostoForm = ({ current_posto, addPosto, updatePosto, clearCurrentPosto }) 
             <input type="number" name='die_price' value={die_price} onChange={e => setDiePrice(e.target.value)} className="form-control number-input" min="0" />
           </div>
         </div>
+      </div>
+      <div className="d-flex justify-content-around">
         <div className="form-group">
           <label>Gasolina Aditivada</label>
           <div className="input-group">
@@ -169,6 +171,7 @@ const PostoForm = ({ current_posto, addPosto, updatePosto, clearCurrentPosto }) 
           </div>
         </div>
       </div>
+
       <div className="text-center my-2">
         <a href='#!' onClick={onSubmit} className='btn btn-dark mr-2'>
           <i className={current_posto ? 'fas fa-edit mr-2' : 'fas fa-plus-circle mr-2'}></i>{current_posto ? 'Editar' : 'Adicionar'}

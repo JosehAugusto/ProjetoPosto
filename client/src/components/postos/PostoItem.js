@@ -67,7 +67,7 @@ const PostoItem = ({ posto, deletePosto, setCurrentPosto }) => {
         </table>
 
         <div className="d-flex justify-content-between">
-          <a href='#!' onClick={() => setCurrentPosto(posto)} className="btn btn-primary"><i className="fas fa-edit mr-2"></i>Editar</a>
+          <a href='#top' onClick={() => setCurrentPosto(posto)} className="btn btn-primary"><i className="fas fa-edit mr-2"></i>Editar</a>
           <a href="#!" onClick={() => deletePosto(posto._id)} className="btn btn-danger"><i className="fas fa-trash mr-2"></i>Remover</a>
         </div>
       </div>
