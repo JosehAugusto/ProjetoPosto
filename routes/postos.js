@@ -6,7 +6,7 @@ var cron = require('node-cron');
 
 
 //Call updateAllGasPrices() every day
-cron.schedule('*/10 * * * * *', async () => {
+cron.schedule(' */2 * * * *', async () => {
     let postos = await Posto.find();
     postos.forEach(updateAllGasPrices);
 });

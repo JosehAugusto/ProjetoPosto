@@ -16,7 +16,7 @@ const initialState = {
   current_posto: null,
   searched_postos: null,
   current_posto: null,
-  current_avg: {comun: 4, aditivada: 5, alcool: 2, diesel: 3, gnv: 2, etanol: 6}
+  current_avg: {comun: 0, aditivada: 0, alcool: 0, diesel: 0, gnv: 0, etanol: 0}
 };
 
 export default (state = initialState, action) => {

@@ -19,9 +19,12 @@ import {
 
 export const calcAvgs = postos => dispatch => {
 
+  
+
+  console.log('postos ta null?');
   console.log(postos);
 
-  let result = {comun: 4, aditivada: 5, alcool: 2, diesel: 3, gnv: 2, etanol: 6};
+  let result = {comun: 4, aditivada: 5, alcool: 2, diesel: 3, gnv: 2, etanol: 7};
 
   dispatch({
     type: SET_CURRENT_DAY_AVGS,
@@ -44,6 +47,7 @@ export const getPostos = () => async dispatch => {
       payload: err.response.msg
     });
   }
+
 };
 
 // Add Posto
