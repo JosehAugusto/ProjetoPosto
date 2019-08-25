@@ -40,6 +40,8 @@ let PostoForm = ({ addPosto }) => {
           alcool_price
         });
 
+        console.log("addPosto called");
+
         // Mensagem dizendo que um posto foi adicionado
 
         // Clear Fields

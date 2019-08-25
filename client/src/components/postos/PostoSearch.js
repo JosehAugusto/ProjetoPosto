@@ -18,13 +18,13 @@ const PostoSearch = ({ searchPostos, clearSearchedPostos }) => {
 
 
   return (
-    <form class="mb-2">
-      <div class="input-group">
-        <input id="search" type="text" class="form-control" ref={text}
+    <form className="mb-2">
+      <div className="input-group">
+        <input id="search" type="text" className="form-control" ref={text}
           onChange={onChange} placeholder="Pesquisar Posto..." />
-        <div class="input-group-append">
-          <button class="btn btn-dark" type="button">
-            <i class="fa fa-search"></i>
+        <div className="input-group-append">
+          <button className="btn btn-dark" type="button">
+            <i className="fa fa-search"></i>
           </button>
         </div>
       </div>
