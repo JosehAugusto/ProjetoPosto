@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { addPosto, updatePosto, clearCurrentPosto } from '../../actions/postoActions';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const PostoForm = ({ current_posto, addPosto, updatePosto, clearCurrentPosto }) => {
 
@@ -30,10 +32,14 @@ const PostoForm = ({ current_posto, addPosto, updatePosto, clearCurrentPosto }) 
 
   const onSubmit = () => {
     if (name === '' || address === '' || gas_com_price === '' || gas_adi_price === '' || eta_price === '' || gnvf_price === '' || die_price === '' || alc_price === '') {
-      // Favor preencher todos os campos
+      toast.error("Por favor, preencha todos os campos.", {
+        position: toast.POSITION.TOP_CENTER
+      });
     } else {
       if (gas_com_price < 0 || gas_adi_price < 0 || eta_price < 0 || gnvf_price < 0 || die_price < 0 || alc_price < 0) {
-        // Numeros precisam ser positivos
+        toast.error("Os combustiveis não podem ter valor negativo.", {
+          position: toast.POSITION.TOP_CENTER
+        });
       } else {
         const gasolina_comun_price = [gas_com_price];
         const gasolina_aditivada_price = [gas_adi_price];
@@ -54,7 +60,11 @@ const PostoForm = ({ current_posto, addPosto, updatePosto, clearCurrentPosto }) 
             alcool_price
           };
 
-          updatePosto(updatedPosto);
+          updatePosto(updatedPosto).then(() => {
+            toast.info("Posto atualizado com sucesso.", {
+              position: toast.POSITION.TOP_CENTER
+            });
+          });
 
         } else {
           addPosto({
@@ -66,7 +76,12 @@ const PostoForm = ({ current_posto, addPosto, updatePosto, clearCurrentPosto }) 
             gnv_price,
             diesel_price,
             alcool_price
+          }).then(() => {
+            toast.success("Posto adicionado com sucesso.", {
+              position: toast.POSITION.TOP_CENTER
+            });
           });
+
         }
 
         // Mensagem dizendo que um posto foi adicionado

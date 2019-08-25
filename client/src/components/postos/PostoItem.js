@@ -2,8 +2,23 @@ import React from 'react'
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { deletePosto, setCurrentPosto } from '../../actions/postoActions';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const PostoItem = ({ posto, deletePosto, setCurrentPosto }) => {
+
+  const deletePostoAndShowToast = (id) => {
+
+    deletePosto(id).then(() => {
+      toast.success("Posto removido com sucesso.", {
+        position: toast.POSITION.TOP_CENTER
+      });
+    });
+
+  }
+
+
   return (
     <div className="card shadow-lg mb-2">
       <div className="card-body">
@@ -68,7 +83,7 @@ const PostoItem = ({ posto, deletePosto, setCurrentPosto }) => {
 
         <div className="d-flex justify-content-between">
           <a href='#top' onClick={() => setCurrentPosto(posto)} className="btn btn-primary"><i className="fas fa-edit mr-2"></i>Editar</a>
-          <a href="#!" onClick={() => deletePosto(posto._id)} className="btn btn-danger"><i className="fas fa-trash mr-2"></i>Remover</a>
+          <a href="#!" onClick={() => deletePostoAndShowToast(posto._id)} className="btn btn-danger"><i className="fas fa-trash mr-2"></i>Remover</a>
         </div>
       </div>
     </div>

@@ -54,7 +54,8 @@ export default (state = initialState, action) => {
         postos: state.postos.map(posto =>
           posto._id === action.payload._id ? action.payload : posto
         ),
-        current_posto: null
+        current_posto: null,
+        searched_postos: null
       };
     case CLEAR_SEARCHED_POSTOS:
       return {
