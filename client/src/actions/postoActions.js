@@ -70,3 +70,18 @@ export const deletePosto = id => async dispatch => {
     });
   }
 };
+
+// Delete game from state
+export const clearSearchedPostos = () => {
+  return {
+    type: CLEAR_SEARCHED_POSTOS
+  };
+};
+
+// Set current game
+export const searchPostos = search_text => {
+  return {
+    type: SEARCH_POSTOS,
+    payload: search_text
+  };
+};

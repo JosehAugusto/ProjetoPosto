@@ -12,7 +12,8 @@ import {
 
 const initialState = {
   postos: null,
-  current_posto: null
+  current_posto: null,
+  searched_postos: null
 };
 
 export default (state = initialState, action) => {
@@ -33,13 +34,23 @@ export default (state = initialState, action) => {
         postos: state.postos.filter(
           posto => posto._id !== action.payload
         ),
-        loading: false
+        searched_postos: null
       };
     case POSTO_ERROR:
       console.error(action.payload);
       return {
         ...state,
         error: action.payload
+      };
+    case SEARCH_POSTOS:
+      return {
+        ...state,
+        searched_postos: state.postos.filter(posto => posto.name.toLowerCase().includes(action.payload.toLowerCase()) || posto.address.toLowerCase().includes(action.payload.toLowerCase()))
+      };
+    case CLEAR_SEARCHED_POSTOS:
+      return {
+        ...state,
+        searched_postos: null
       };
     default:
       return state;

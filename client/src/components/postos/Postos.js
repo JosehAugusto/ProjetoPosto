@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getPostos } from '../../actions/postoActions';
 
-const Postos = ({ posto: { postos }, getPostos }) => {
+const Postos = ({ posto: { postos, searched_postos }, getPostos }) => {
 
   useEffect(() => {
     getPostos();
@@ -14,7 +14,7 @@ const Postos = ({ posto: { postos }, getPostos }) => {
 
   return (
     <div>
-      {postos !== null ? postos.map(posto => <PostoItem posto={posto} key={posto._id} />) : null}
+      {searched_postos !== null ? searched_postos.map(posto => <PostoItem posto={posto} key={posto._id} />) : (postos !== null ? postos.map(posto => <PostoItem posto={posto} key={posto._id} />) : null)}
     </div>
   )
 }
