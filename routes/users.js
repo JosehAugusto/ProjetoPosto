@@ -12,7 +12,7 @@ const User = require('../models/User');
 router.post('/',
 [
     check('name', 'Please inform a name').not().isEmpty(),
-    check('email', 'Please infomr a valid email').isEmail(),
+    check('email', 'Please inform a valid email').isEmail(),
     check('password', 'Please inform a password with 6 characters or more').isLength({min: 6})
 ], async (req, res) => {
 
@@ -56,7 +56,7 @@ router.post('/',
         });
     } catch (err) {
         console.error(err.message);
-        res.status(500).send('Server Error');
+        res.status(500).json({msg: 'Server Error'});
     }
 });
 

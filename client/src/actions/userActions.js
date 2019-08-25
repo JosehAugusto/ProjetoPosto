@@ -10,6 +10,33 @@ import {
 
 import axios from 'axios';
 
+export const addNewUser = user => async dispatch => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+  
+    try {
+      const res = await axios.post('/api/users', user, config);
+
+      dispatch({
+        type: ADD_USER,
+        payload: res.data
+      });
+
+    } catch (err) {
+
+      console.log(err.response.msg);
+
+        dispatch({
+          type: USER_ERROR,
+          payload: err.response.msg
+        });
+    }
+  };
+
+
 // Add new User
 export const addUser = user => async dispatch => {
   const config = {
