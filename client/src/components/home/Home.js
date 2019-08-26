@@ -1,18 +1,11 @@
-<<<<<<< Updated upstream
-import React, { useEffect, useState } from 'react'
-=======
 import React, { useEffect} from 'react'
->>>>>>> Stashed changes
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getPostos, calcAvgs } from '../../actions/postoActions';
 //import { set } from 'mongoose';
 
-<<<<<<< Updated upstream
-const Home = ({ posto: { postos, current_avg }, getPostos, calcAvgs }) => {
-=======
 const Home = ({ posto: {postos}, getPostos}) => {
->>>>>>> Stashed changes
+
   // Valores dos combustiveis hoje
   let gasolinaComunAvgToday = 0;
   let gasolinaAditivadaAvgToday = 0;
@@ -58,9 +51,6 @@ const Home = ({ posto: {postos}, getPostos}) => {
       let dieselArrayYesterday = [];
       let alcoolArrayYesterday = [];
 
-<<<<<<< Updated upstream
-      postos.forEach(posto => {
-=======
       let gasolinaComunArray30day = [];
       let gasolinaAditivadaArray30day = [];
       let etanolArray30day = [];
@@ -68,8 +58,7 @@ const Home = ({ posto: {postos}, getPostos}) => {
       let dieselArray30day = [];
       let alcoolArray30day = [];
 
-      postos.forEach(posto=> {
->>>>>>> Stashed changes
+      postos.forEach(posto => {
         // arrays usados pro calculo da media hoje e de ontem
         if (posto.gasolina_comun_price.length > 1) {
           gasolinaComunArrayToday.push(posto.gasolina_comun_price[posto.gasolina_comun_price.length - 1])
@@ -95,8 +84,6 @@ const Home = ({ posto: {postos}, getPostos}) => {
           alcoolArrayToday.push(posto.alcool_price[posto.alcool_price.length - 1])
           alcoolArrayYesterday.push(posto.alcool_price[posto.alcool_price.length - 2])
         }
-<<<<<<< Updated upstream
-=======
         // arrays usados pro calculo da media de 30 dias atras
         if(posto.gasolina_comun_price.length > 30){
           gasolinaComunArray30day.push(posto.gasolina_comun_price[0])
@@ -116,10 +103,8 @@ const Home = ({ posto: {postos}, getPostos}) => {
         if(posto.alcool_price.length > 30){
           alcoolArray30day.push(posto.alcool_price[0])
         }
->>>>>>> Stashed changes
       });
 
-      
       // gasolina comun hoje
       let size = gasolinaComunArrayToday.length
       let val = gasolinaComunArrayToday.reduce((previous, current) => current += previous);
@@ -228,6 +213,16 @@ const Home = ({ posto: {postos}, getPostos}) => {
 
       dieselDiferenceYesterday = val - val2
 
+      // diesel diferença de ontem pra 30 dias
+      if(dieselArray30day.length > 0)
+      {
+        let size3 = dieselArray30day.length
+        let val3 = dieselArray30day.reduce((previous, current) => current += previous);
+        val3 = val3/size3;
+
+        dieselDiference30day = val - val3
+      }
+
       // alcool hoje
       size = alcoolArrayToday.length
       val = alcoolArrayToday.reduce((previous, current) => current += previous);
@@ -241,6 +236,16 @@ const Home = ({ posto: {postos}, getPostos}) => {
       val2 = val2 / size2;
 
       alcoolDiferenceYesterday = val - val2
+
+      // alcool diferença de ontem pra 30 dias
+      if(alcoolArray30day.length > 0)
+      {
+        let size3 = alcoolArray30day.length
+        let val3 = alcoolArray30day.reduce((previous, current) => current += previous);
+        val3 = val3/size3;
+
+        alcoolDiference30day = val - val3
+      }
     }
   }
 
