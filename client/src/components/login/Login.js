@@ -39,11 +39,11 @@ const Login = ({logUser, getUser, login_token}) => {
                         <form id="loginForm" onSubmit={handleSubmit}>
                             <div className="form-group">
                                 <label>Email address</label>
-                                <input type="email" className="form-control" id="InputEmail" value={email} onChange={e => setEmail(e.target.value)} aria-describedby="emailHelp" placeholder="Enter email"></input>
+                                <input type="email" className="form-control" id="InputEmail2" value={email} onChange={e => setEmail(e.target.value)} aria-describedby="emailHelp" placeholder="Enter email"></input>
                             </div>
                             <div className="form-group">
                                 <label>Password</label>
-                                <input type="password" className="form-control" id="InputPassword" value={password} onChange={e => setPassword(e.target.value)} placeholder="Password"></input>
+                                <input type="password" className="form-control" id="InputPassword2" value={password} onChange={e => setPassword(e.target.value)} placeholder="Password"></input>
                             </div>
                         </form>
                     </div>
@@ -59,7 +59,7 @@ const Login = ({logUser, getUser, login_token}) => {
 }
 
 Login.propTypes = {
-  addUser: PropTypes.func.isRequired
+    logUser: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({

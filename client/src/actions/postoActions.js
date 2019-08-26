@@ -10,27 +10,7 @@ import {
   SEARCH_POSTOS,
   CLEAR_SEARCHED_POSTOS,
   POSTO_ERROR,
-  SET_CURRENT_DAY_AVGS,
-  SET_PREVIOS_DAY_AVGS
 } from './types';
-
-
-//Calculate avgs
-
-export const calcAvgs = postos => dispatch => {
-
-  
-
-  console.log('postos ta null?');
-  console.log(postos);
-
-  let result = {comun: 4, aditivada: 5, alcool: 2, diesel: 3, gnv: 2, etanol: 7};
-
-  dispatch({
-    type: SET_CURRENT_DAY_AVGS,
-    payload: result
-  });
-}
 
 // Get postos from server
 export const getPostos = () => async dispatch => {
@@ -148,3 +128,4 @@ export const updatePosto = posto => async dispatch => {
     });
   }
 };
+

@@ -1,7 +1,5 @@
 import {
   ADD_USER,
-  UPDATE_USER,
-  DELETE_USER,
   USER_ERROR,
   GET_USER,
   LOG_USER,

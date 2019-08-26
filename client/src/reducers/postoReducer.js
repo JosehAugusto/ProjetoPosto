@@ -8,15 +8,13 @@ import {
   SEARCH_POSTOS,
   CLEAR_SEARCHED_POSTOS,
   POSTO_ERROR,
-  SET_CURRENT_DAY_AVGS
 } from '../actions/types';
 
 const initialState = {
   postos: null,
   current_posto: null,
   searched_postos: null,
-  current_posto: null,
-  current_avg: {comun: 0, aditivada: 0, alcool: 0, diesel: 0, gnv: 0, etanol: 0}
+  current_posto: null
 };
 
 export default (state = initialState, action) => {
@@ -73,11 +71,6 @@ export default (state = initialState, action) => {
       return {
         ...state,
         current_posto: null
-      };
-    case SET_CURRENT_DAY_AVGS:
-      return {
-        ...state,
-        current_avg: action.payload
       };
     default:
       return state;

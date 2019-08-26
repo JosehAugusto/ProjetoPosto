@@ -1,7 +1,7 @@
 import React, { useEffect} from 'react'
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getPostos, calcAvgs } from '../../actions/postoActions';
+import { getPostos } from '../../actions/postoActions';
 //import { set } from 'mongoose';
 
 const Home = ({ posto: {postos}, getPostos}) => {
@@ -419,7 +419,6 @@ const Home = ({ posto: {postos}, getPostos}) => {
 Home.propTypes = {
   posto: PropTypes.object.isRequired,
   getPostos: PropTypes.func.isRequired,
-  calcAvgs: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -428,6 +427,6 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getPostos, calcAvgs }
+  { getPostos }
 )(Home);
 
