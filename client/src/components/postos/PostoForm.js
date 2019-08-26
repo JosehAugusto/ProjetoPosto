@@ -41,26 +41,27 @@ const PostoForm = ({ current_posto, addPosto, updatePosto, clearCurrentPosto }) 
           position: toast.POSITION.TOP_CENTER
         });
       } else {
-        let gasolina_comun_price = current_posto.gasolina_comun_price;
-        gasolina_comun_price[gasolina_comun_price.length - 1] = gas_com_price;
-
-        let gasolina_aditivada_price = current_posto.gasolina_aditivada_price;
-        gasolina_aditivada_price[gasolina_aditivada_price.length - 1] = gas_adi_price;
-
-        let etanol_price = current_posto.etanol_price;
-        etanol_price[etanol_price.length - 1] = eta_price;
-
-        let gnv_price = current_posto.gnv_price;
-        gnv_price[gnv_price.length - 1] = gnvf_price;
-
-        let diesel_price = current_posto.diesel_price;
-        diesel_price[diesel_price.length - 1] = die_price;
-
-        let alcool_price = current_posto.alcool_price;
-        alcool_price[alcool_price.length - 1] = alc_price;
-
 
         if (current_posto) {
+
+          let gasolina_comun_price = current_posto.gasolina_comun_price;
+          gasolina_comun_price[gasolina_comun_price.length - 1] = gas_com_price;
+
+          let gasolina_aditivada_price = current_posto.gasolina_aditivada_price;
+          gasolina_aditivada_price[gasolina_aditivada_price.length - 1] = gas_adi_price;
+
+          let etanol_price = current_posto.etanol_price;
+          etanol_price[etanol_price.length - 1] = eta_price;
+
+          let gnv_price = current_posto.gnv_price;
+          gnv_price[gnv_price.length - 1] = gnvf_price;
+
+          let diesel_price = current_posto.diesel_price;
+          diesel_price[diesel_price.length - 1] = die_price;
+
+          let alcool_price = current_posto.alcool_price;
+          alcool_price[alcool_price.length - 1] = alc_price;
+
           const updatedPosto = {
             _id: current_posto._id,
             name,
@@ -79,6 +80,13 @@ const PostoForm = ({ current_posto, addPosto, updatePosto, clearCurrentPosto }) 
           });
 
         } else {
+          const gasolina_comun_price = [gas_com_price];
+          const gasolina_aditivada_price = [gas_adi_price];
+          const etanol_price = [eta_price];
+          const gnv_price = [gnvf_price];
+          const diesel_price = [die_price];
+          const alcool_price = [alc_price];
+
           addPosto({
             name,
             address,

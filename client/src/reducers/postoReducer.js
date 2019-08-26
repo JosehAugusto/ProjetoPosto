@@ -13,7 +13,7 @@ import {
 const initialState = {
   postos: null,
   current_posto: null,
-  searched_postos: null,
+  searched_postos: null
 };
 
 export default (state = initialState, action) => {
