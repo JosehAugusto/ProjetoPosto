@@ -6,7 +6,7 @@ const Navbar = () => {
     <div>
       <nav id="top" className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container container-stretched">
-          <a className="navbar-brand" href="#"><i className="fas fa-gas-pump fa-2x"></i>
+          <a className="navbar-brand" href="#!"><i className="fas fa-gas-pump fa-2x"></i>
           </a>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

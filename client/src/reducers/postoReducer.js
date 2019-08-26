@@ -14,7 +14,6 @@ const initialState = {
   postos: null,
   current_posto: null,
   searched_postos: null,
-  current_posto: null
 };
 
 export default (state = initialState, action) => {
