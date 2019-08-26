@@ -16,37 +16,37 @@ async function updateAllGasPrices(item) {
 
     if (item.gasolina_comun_price.length >= 1) {
         item.gasolina_comun_price.push(item.gasolina_comun_price[item.gasolina_comun_price.length - 1]);
-        if (item.gasolina_comun_price.length >= 31) {
+        if (item.gasolina_comun_price.length >= 32) {
             item.gasolina_comun_price.shift();
         }
     }
     if (item.gasolina_aditivada_price.length >= 1) {
         item.gasolina_aditivada_price.push(item.gasolina_aditivada_price[item.gasolina_aditivada_price.length - 1]);
-        if (item.gasolina_aditivada_price.length >= 31) {
+        if (item.gasolina_aditivada_price.length >= 32) {
             item.gasolina_aditivada_price.shift();
         }
     }
     if (item.etanol_price.length >= 1) {
         item.etanol_price.push(item.etanol_price[item.etanol_price.length - 1]);
-        if (item.etanol_price.length >= 31) {
+        if (item.etanol_price.length >= 32) {
             item.etanol_price.shift();
         }
     }
     if (item.gnv_price.length >= 1) {
         item.gnv_price.push(item.gnv_price[item.gnv_price.length - 1]);
-        if (item.gnv_price.length >= 31) {
+        if (item.gnv_price.length >= 32) {
             item.gnv_price.shift();
         }
     }
     if (item.diesel_price.length >= 1) {
         item.diesel_price.push(item.diesel_price[item.diesel_price.length - 1]);
-        if (item.diesel_price.length >= 31) {
+        if (item.diesel_price.length >= 32) {
             item.diesel_price.shift();
         }
     }
     if (item.alcool_price.length >= 1) {
         item.alcool_price.push(item.alcool_price[item.alcool_price.length - 1]);
-        if (item.alcool_price.length >= 31) {
+        if (item.alcool_price.length >= 32) {
             item.alcool_price.shift();
         }
     }

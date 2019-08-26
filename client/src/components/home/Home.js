@@ -1,10 +1,18 @@
+<<<<<<< Updated upstream
 import React, { useEffect, useState } from 'react'
+=======
+import React, { useEffect} from 'react'
+>>>>>>> Stashed changes
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getPostos, calcAvgs } from '../../actions/postoActions';
-import { set } from 'mongoose';
+//import { set } from 'mongoose';
 
+<<<<<<< Updated upstream
 const Home = ({ posto: { postos, current_avg }, getPostos, calcAvgs }) => {
+=======
+const Home = ({ posto: {postos}, getPostos}) => {
+>>>>>>> Stashed changes
   // Valores dos combustiveis hoje
   let gasolinaComunAvgToday = 0;
   let gasolinaAditivadaAvgToday = 0;
@@ -19,6 +27,14 @@ const Home = ({ posto: { postos, current_avg }, getPostos, calcAvgs }) => {
   let gnvDiferenceYesterday = 0;
   let dieselDiferenceYesterday = 0;
   let alcoolDiferenceYesterday = 0;
+  // Diferença entre hoje e 30 dias atras
+  let gasolinaComunDiference30day = 0;
+  let gasolinaAditivadaDiference30day = 0;
+  let etanolDiference30day = 0;
+  let gnvDiference30day = 0;
+  let dieselDiference30day = 0;
+  let alcoolDiference30day = 0;
+
 
   useEffect(() => {
     getPostos()
@@ -42,7 +58,18 @@ const Home = ({ posto: { postos, current_avg }, getPostos, calcAvgs }) => {
       let dieselArrayYesterday = [];
       let alcoolArrayYesterday = [];
 
+<<<<<<< Updated upstream
       postos.forEach(posto => {
+=======
+      let gasolinaComunArray30day = [];
+      let gasolinaAditivadaArray30day = [];
+      let etanolArray30day = [];
+      let gnvArray30day = [];
+      let dieselArray30day = [];
+      let alcoolArray30day = [];
+
+      postos.forEach(posto=> {
+>>>>>>> Stashed changes
         // arrays usados pro calculo da media hoje e de ontem
         if (posto.gasolina_comun_price.length > 1) {
           gasolinaComunArrayToday.push(posto.gasolina_comun_price[posto.gasolina_comun_price.length - 1])
@@ -68,8 +95,31 @@ const Home = ({ posto: { postos, current_avg }, getPostos, calcAvgs }) => {
           alcoolArrayToday.push(posto.alcool_price[posto.alcool_price.length - 1])
           alcoolArrayYesterday.push(posto.alcool_price[posto.alcool_price.length - 2])
         }
+<<<<<<< Updated upstream
+=======
+        // arrays usados pro calculo da media de 30 dias atras
+        if(posto.gasolina_comun_price.length > 30){
+          gasolinaComunArray30day.push(posto.gasolina_comun_price[0])
+        }
+        if(posto.gasolina_aditivada_price.length > 30){
+          gasolinaAditivadaArray30day.push(posto.gasolina_aditivada_price[0])
+        }
+        if(posto.etanol_price.length > 30){
+          etanolArray30day.push(posto.etanol_price[0])
+        }
+        if(posto.gnv_price.length > 30){
+          gnvArray30day.push(posto.gnv_price[0])
+        }
+        if(posto.diesel_price.length > 30){
+          dieselArray30day.push(posto.diesel_price[0])
+        }
+        if(posto.alcool_price.length > 30){
+          alcoolArray30day.push(posto.alcool_price[0])
+        }
+>>>>>>> Stashed changes
       });
 
+      
       // gasolina comun hoje
       let size = gasolinaComunArrayToday.length
       let val = gasolinaComunArrayToday.reduce((previous, current) => current += previous);
@@ -82,8 +132,16 @@ const Home = ({ posto: { postos, current_avg }, getPostos, calcAvgs }) => {
       let val2 = gasolinaComunArrayYesterday.reduce((previous, current) => current += previous);
       val2 = val2 / size2;
 
-      gasolinaComunDiferenceYesterday = val - val2
+      // gasolina comun diferença de ontem pra 30 dias
+      if(gasolinaComunArray30day.length > 0)
+      {
+        let size3 = gasolinaComunArray30day.length
+        let val3 = gasolinaComunArray30day.reduce((previous, current) => current += previous);
+        val3 = val3/size3;
 
+        gasolinaComunDiference30day = val - val3
+      }
+      
       // gasolina aditivada hoje
       size = gasolinaAditivadaArrayToday.length
       val = gasolinaAditivadaArrayToday.reduce((previous, current) => current += previous);
@@ -97,6 +155,16 @@ const Home = ({ posto: { postos, current_avg }, getPostos, calcAvgs }) => {
       val2 = val2 / size2;
 
       gasolinaAditivadaDiferenceYesterday = val - val2
+
+      // gasolina aditivada diferença de ontem pra 30 dias
+      if(gasolinaAditivadaArray30day.length > 0)
+      {
+        let size3 = gasolinaAditivadaArray30day.length
+        let val3 = gasolinaAditivadaArray30day.reduce((previous, current) => current += previous);
+        val3 = val3/size3;
+
+        gasolinaAditivadaDiference30day = val - val3
+      }
 
       // etanol hoje
       size = etanolArrayToday.length
@@ -112,6 +180,16 @@ const Home = ({ posto: { postos, current_avg }, getPostos, calcAvgs }) => {
 
       etanolDiferenceYesterday = val - val2
 
+      // etanol diferença de ontem pra 30 dias
+      if(etanolArray30day.length > 0)
+      {
+        let size3 = etanolArray30day.length
+        let val3 = etanolArray30day.reduce((previous, current) => current += previous);
+        val3 = val3/size3;
+
+        etanolDiference30day = val - val3
+      }
+
       // gnv hoje
       size = gnvArrayToday.length
       val = gnvArrayToday.reduce((previous, current) => current += previous);
@@ -125,6 +203,16 @@ const Home = ({ posto: { postos, current_avg }, getPostos, calcAvgs }) => {
       val2 = val2 / size2;
 
       gnvDiferenceYesterday = val - val2
+
+      // gnv diferença de ontem pra 30 dias
+      if(gnvArray30day.length > 0)
+      {
+        let size3 = gnvArray30day.length
+        let val3 = gnvArray30day.reduce((previous, current) => current += previous);
+        val3 = val3/size3;
+
+        gnvDiference30day = val - val3
+      }
 
       // diesel hoje
       size = dieselArrayToday.length
@@ -154,7 +242,6 @@ const Home = ({ posto: { postos, current_avg }, getPostos, calcAvgs }) => {
 
       alcoolDiferenceYesterday = val - val2
     }
-
   }
 
   return (
@@ -179,7 +266,7 @@ const Home = ({ posto: { postos, current_avg }, getPostos, calcAvgs }) => {
                 <div className="price-variation-container py-3">
                   <p className="card-text mb-0">Variação nos últimos 30 dias</p>
                   <i className="fas fa-chevron-down text-success fa-3x"></i><span
-                    className="ml-2 text-success big-percentage">5.74%</span>
+                    className="ml-2 text-success big-percentage">{gasolinaComunDiference30day}R$</span>
                 </div>
               </div>
               <div className="py-3">
@@ -204,7 +291,7 @@ const Home = ({ posto: { postos, current_avg }, getPostos, calcAvgs }) => {
                 <div className="price-variation-container py-3">
                   <p className="card-text mb-0">Variação nos últimos 30 dias</p>
                   <i className="fas fa-chevron-down text-success fa-3x"></i><span
-                    className="ml-2 text-success big-percentage">3.20%</span>
+                    className="ml-2 text-success big-percentage">{alcoolDiference30day}</span>
                 </div>
 
               </div>
@@ -230,7 +317,7 @@ const Home = ({ posto: { postos, current_avg }, getPostos, calcAvgs }) => {
                 <div className="price-variation-container py-3">
                   <p className="card-text mb-0">Variação nos últimos 30 dias</p>
                   <i className="fas fa-chevron-down text-success fa-3x"></i><span
-                    className="ml-2 text-success big-percentage">2.74%</span>
+                    className="ml-2 text-success big-percentage">{etanolDiference30day}R$</span>
                 </div>
 
               </div>
@@ -256,7 +343,7 @@ const Home = ({ posto: { postos, current_avg }, getPostos, calcAvgs }) => {
                 <div className="price-variation-container py-3">
                   <p className="card-text mb-0">Variação nos últimos 30 dias</p>
                   <i className="fas fa-chevron-down text-success fa-3x"></i><span
-                    className="ml-2 text-success big-percentage">2.74%</span>
+                    className="ml-2 text-success big-percentage">{dieselDiference30day}R$</span>
                 </div>
 
               </div>
@@ -282,7 +369,7 @@ const Home = ({ posto: { postos, current_avg }, getPostos, calcAvgs }) => {
                 <div className="price-variation-container py-3">
                   <p className="card-text mb-0">Variação nos últimos 30 dias</p>
                   <i className="fas fa-chevron-down text-success fa-3x"></i><span
-                    className="ml-2 text-success big-percentage">2.74%</span>
+                    className="ml-2 text-success big-percentage">{gasolinaAditivadaDiference30day}R$</span>
                 </div>
 
               </div>
@@ -308,7 +395,7 @@ const Home = ({ posto: { postos, current_avg }, getPostos, calcAvgs }) => {
                 <div className="price-variation-container py-3">
                   <p className="card-text mb-0">Variação nos últimos 30 dias</p>
                   <i className="fas fa-chevron-down text-success fa-3x"></i><span
-                    className="ml-2 text-success big-percentage">2.74%</span>
+                    className="ml-2 text-success big-percentage">{gnvDiference30day}R$</span>
                 </div>
 
               </div>
