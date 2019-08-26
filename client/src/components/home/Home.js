@@ -125,6 +125,8 @@ const Home = ({ posto: { postos }, getPostos }) => {
         size2 = gasolinaComunArrayYesterday.length
         val2 = gasolinaComunArrayYesterday.reduce((previous, current) => current += previous);
         val2 = val2 / size2;
+
+        gasolinaComunDiferenceYesterday = val - val2
       }
       
       // gasolina comun diferença de ontem pra 30 dias
