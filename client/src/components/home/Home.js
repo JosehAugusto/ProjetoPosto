@@ -257,15 +257,15 @@ const Home = ({ posto: { postos }, getPostos }) => {
                 <div className="price-variation-container">
                   <p className="card-text mb-1">Ultimas 24 horas</p>
                   <h3 className="card-title mb-2">
-                    R$ {gasolinaComunAvgToday}/L
+                    R$ {gasolinaComunAvgToday.toFixed(2)}/L
                     <span><i className={gasolinaComunDiferenceYesterday > 0 ? 'fas fa-chevron-up text-danger fa-sm ml-2' : gasolinaComunDiferenceYesterday === 0 ? 'fas fa-equals text-warning fa-sm ml-2' : 'fas fa-chevron-down text-success fa-sm ml-2'} ></i></span>
-                    <span className={gasolinaComunDiferenceYesterday > 0 ? 'text-danger small-percentage' : gasolinaComunDiferenceYesterday === 0 ? 'text-warning small-percentage' : 'text-success small-percentage'}> {gasolinaComunDiferenceYesterday} R$ </span>
+                    <span className={gasolinaComunDiferenceYesterday > 0 ? 'text-danger small-percentage' : gasolinaComunDiferenceYesterday === 0 ? 'text-warning small-percentage' : 'text-success small-percentage'}> {gasolinaComunDiferenceYesterday.toFixed(2)} R$ </span>
                   </h3>
                 </div>
                 <div className="price-variation-container py-3">
                   <p className="card-text mb-0">Variação nos últimos 30 dias</p>
                   <i className={gasolinaComunDiference30day > 0 ? 'fas fa-chevron-up text-danger fa-3x' : gasolinaComunDiference30day === 0 ? 'fas fa-equals text-warning fa-3x' : 'fas fa-chevron-down text-success fa-3x'}></i>
-                  <span className={gasolinaComunDiference30day > 0 ? 'ml-2 text-danger big-percentage' : gasolinaComunDiference30day === 0 ? 'ml-2 text-warning big-percentage' : 'ml-2 text-success big-percentage'}>{gasolinaComunDiference30day} R$</span>
+                  <span className={gasolinaComunDiference30day > 0 ? 'ml-2 text-danger big-percentage' : gasolinaComunDiference30day === 0 ? 'ml-2 text-warning big-percentage' : 'ml-2 text-success big-percentage'}>{gasolinaComunDiference30day.toFixed(2)} R$</span>
                 </div>
               </div>
               <div className="py-3">
@@ -282,15 +282,15 @@ const Home = ({ posto: { postos }, getPostos }) => {
                 <div className="price-variation-container">
                   <p className="card-text mb-1">Ultimas 24 horas</p>
                   <h3 className="card-title mb-2">
-                    R$ {alcoolAvgToday}/L
+                    R$ {alcoolAvgToday.toFixed(2)}/L
                     <span><i className={alcoolDiferenceYesterday > 0 ? 'fas fa-chevron-up text-danger fa-sm ml-2' : alcoolDiferenceYesterday === 0 ? 'fas fa-equals text-warning fa-sm ml-2' : 'fas fa-chevron-down text-success fa-sm ml-2'} ></i></span>
-                    <span className={alcoolDiferenceYesterday > 0 ? 'text-danger small-percentage' : alcoolDiferenceYesterday === 0 ? 'text-warning small-percentage' : 'text-success small-percentage'}> {alcoolDiferenceYesterday} R$ </span>
+                    <span className={alcoolDiferenceYesterday > 0 ? 'text-danger small-percentage' : alcoolDiferenceYesterday === 0 ? 'text-warning small-percentage' : 'text-success small-percentage'}> {alcoolDiferenceYesterday.toFixed(2)} R$ </span>
                   </h3>
                 </div>
                 <div className="price-variation-container py-3">
                   <p className="card-text mb-0">Variação nos últimos 30 dias</p>
                   <i className={alcoolDiference30day > 0 ? 'fas fa-chevron-up text-danger fa-3x' : alcoolDiference30day === 0 ? 'fas fa-equals text-warning fa-3x' : 'fas fa-chevron-down text-success fa-3x'}></i>
-                  <span className={alcoolDiference30day > 0 ? 'ml-2 text-danger big-percentage' : alcoolDiference30day === 0 ? 'ml-2 text-warning big-percentage' : 'ml-2 text-success big-percentage'}>{alcoolDiference30day} R$</span>
+                  <span className={alcoolDiference30day > 0 ? 'ml-2 text-danger big-percentage' : alcoolDiference30day === 0 ? 'ml-2 text-warning big-percentage' : 'ml-2 text-success big-percentage'}>{alcoolDiference30day.toFixed(2)} R$</span>
                 </div>
 
               </div>
@@ -308,15 +308,15 @@ const Home = ({ posto: { postos }, getPostos }) => {
                 <div className="price-variation-container">
                   <p className="card-text mb-1">Ultimas 24 horas</p>
                   <h3 className="card-title mb-2">
-                    R$ {etanolAvgToday}/L
+                    R$ {etanolAvgToday.toFixed(2)}/L
                     <span><i className={etanolDiferenceYesterday > 0 ? 'fas fa-chevron-up text-danger fa-sm ml-2' : etanolDiferenceYesterday === 0 ? 'fas fa-equals text-warning fa-sm ml-2' : 'fas fa-chevron-down text-success fa-sm ml-2'} ></i></span>
-                    <span className={etanolDiferenceYesterday > 0 ? 'text-danger small-percentage' : etanolDiferenceYesterday === 0 ? 'text-warning small-percentage' : 'text-success small-percentage'}> {etanolDiferenceYesterday} R$ </span>
+                    <span className={etanolDiferenceYesterday > 0 ? 'text-danger small-percentage' : etanolDiferenceYesterday === 0 ? 'text-warning small-percentage' : 'text-success small-percentage'}> {etanolDiferenceYesterday.toFixed(2)} R$ </span>
                   </h3>
                 </div>
                 <div className="price-variation-container py-3">
                   <p className="card-text mb-0">Variação nos últimos 30 dias</p>
                   <i className={etanolDiference30day > 0 ? 'fas fa-chevron-up text-danger fa-3x' : etanolDiference30day === 0 ? 'fas fa-equals text-warning fa-3x' : 'fas fa-chevron-down text-success fa-3x'}></i>
-                  <span className={etanolDiference30day > 0 ? 'ml-2 text-danger big-percentage' : etanolDiference30day === 0 ? 'ml-2 text-warning big-percentage' : 'ml-2 text-success big-percentage'}>{etanolDiference30day} R$</span>
+                  <span className={etanolDiference30day > 0 ? 'ml-2 text-danger big-percentage' : etanolDiference30day === 0 ? 'ml-2 text-warning big-percentage' : 'ml-2 text-success big-percentage'}>{etanolDiference30day.toFixed(2)} R$</span>
                 </div>
 
               </div>
@@ -334,15 +334,15 @@ const Home = ({ posto: { postos }, getPostos }) => {
                 <div className="price-variation-container">
                   <p className="card-text mb-1">Ultimas 24 horas</p>
                   <h3 className="card-title mb-2">
-                    R$ {dieselAvgToday}/L
+                    R$ {dieselAvgToday.toFixed(2)}/L
                     <span><i className={dieselDiferenceYesterday > 0 ? 'fas fa-chevron-up text-danger fa-sm ml-2' : dieselDiferenceYesterday === 0 ? 'fas fa-equals text-warning fa-sm ml-2' : 'fas fa-chevron-down text-success fa-sm ml-2'} ></i></span>
-                    <span className={dieselDiferenceYesterday > 0 ? 'text-danger small-percentage' : dieselDiferenceYesterday === 0 ? 'text-warning small-percentage' : 'text-success small-percentage'}> {dieselDiferenceYesterday} R$ </span>
+                    <span className={dieselDiferenceYesterday > 0 ? 'text-danger small-percentage' : dieselDiferenceYesterday === 0 ? 'text-warning small-percentage' : 'text-success small-percentage'}> {dieselDiferenceYesterday.toFixed(2)} R$ </span>
                   </h3>
                 </div>
                 <div className="price-variation-container py-3">
                   <p className="card-text mb-0">Variação nos últimos 30 dias</p>
                   <i className={dieselDiference30day > 0 ? 'fas fa-chevron-up text-danger fa-3x' : dieselDiference30day === 0 ? 'fas fa-equals text-warning fa-3x' : 'fas fa-chevron-down text-success fa-3x'}></i>
-                  <span className={dieselDiference30day > 0 ? 'ml-2 text-danger big-percentage' : dieselDiference30day === 0 ? 'ml-2 text-warning big-percentage' : 'ml-2 text-success big-percentage'}>{dieselDiference30day} R$</span>
+                  <span className={dieselDiference30day > 0 ? 'ml-2 text-danger big-percentage' : dieselDiference30day === 0 ? 'ml-2 text-warning big-percentage' : 'ml-2 text-success big-percentage'}>{dieselDiference30day.toFixed(2)} R$</span>
                 </div>
 
               </div>
@@ -360,15 +360,15 @@ const Home = ({ posto: { postos }, getPostos }) => {
                 <div className="price-variation-container">
                   <p className="card-text mb-1">Ultimas 24 horas</p>
                   <h3 className="card-title mb-2">
-                    R$ {gasolinaAditivadaAvgToday}/L
+                    R$ {gasolinaAditivadaAvgToday.toFixed(2)}/L
                     <span><i className={gasolinaAditivadaDiferenceYesterday > 0 ? 'fas fa-chevron-up text-danger fa-sm ml-2' : gasolinaAditivadaDiferenceYesterday === 0 ? 'fas fa-equals text-warning fa-sm ml-2' : 'fas fa-chevron-down text-success fa-sm ml-2'} ></i></span>
-                    <span className={gasolinaAditivadaDiferenceYesterday > 0 ? 'text-danger small-percentage' : gasolinaAditivadaDiferenceYesterday === 0 ? 'text-warning small-percentage' : 'text-success small-percentage'}> {gasolinaAditivadaDiferenceYesterday} R$ </span>
+                    <span className={gasolinaAditivadaDiferenceYesterday > 0 ? 'text-danger small-percentage' : gasolinaAditivadaDiferenceYesterday === 0 ? 'text-warning small-percentage' : 'text-success small-percentage'}> {gasolinaAditivadaDiferenceYesterday.toFixed(2)} R$ </span>
                   </h3>
                 </div>
                 <div className="price-variation-container py-3">
                   <p className="card-text mb-0">Variação nos últimos 30 dias</p>
                   <i className={gasolinaAditivadaDiference30day > 0 ? 'fas fa-chevron-up text-danger fa-3x' : gasolinaAditivadaDiference30day === 0 ? 'fas fa-equals text-warning fa-3x' : 'fas fa-chevron-down text-success fa-3x'}></i>
-                  <span className={gasolinaAditivadaDiference30day > 0 ? 'ml-2 text-danger big-percentage' : gasolinaAditivadaDiference30day === 0 ? 'ml-2 text-warning big-percentage' : 'ml-2 text-success big-percentage'}>{gasolinaAditivadaDiference30day} R$</span>
+                  <span className={gasolinaAditivadaDiference30day > 0 ? 'ml-2 text-danger big-percentage' : gasolinaAditivadaDiference30day === 0 ? 'ml-2 text-warning big-percentage' : 'ml-2 text-success big-percentage'}>{gasolinaAditivadaDiference30day.toFixed(2)} R$</span>
                 </div>
 
               </div>
@@ -386,15 +386,15 @@ const Home = ({ posto: { postos }, getPostos }) => {
                 <div className="price-variation-container">
                   <p className="card-text mb-1">Ultimas 24 horas</p>
                   <h3 className="card-title mb-2">
-                    R$ {gnvAvgToday}/L
+                    R$ {gnvAvgToday.toFixed(2)}/L
                     <span><i className={gnvDiferenceYesterday > 0 ? 'fas fa-chevron-up text-danger fa-sm ml-2' : gnvDiferenceYesterday === 0 ? 'fas fa-equals text-warning fa-sm ml-2' : 'fas fa-chevron-down text-success fa-sm ml-2'} ></i></span>
-                    <span className={gnvDiferenceYesterday > 0 ? 'text-danger small-percentage' : gnvDiferenceYesterday === 0 ? 'text-warning small-percentage' : 'text-success small-percentage'}> {gnvDiferenceYesterday} R$ </span>
+                    <span className={gnvDiferenceYesterday > 0 ? 'text-danger small-percentage' : gnvDiferenceYesterday === 0 ? 'text-warning small-percentage' : 'text-success small-percentage'}> {gnvDiferenceYesterday.toFixed(2)} R$ </span>
                   </h3>
                 </div>
                 <div className="price-variation-container py-3">
                   <p className="card-text mb-0">Variação nos últimos 30 dias</p>
                   <i className={gnvDiference30day > 0 ? 'fas fa-chevron-up text-danger fa-3x' : gnvDiference30day === 0 ? 'fas fa-equals text-warning fa-3x' : 'fas fa-chevron-down text-success fa-3x'}></i>
-                  <span className={gnvDiference30day > 0 ? 'ml-2 text-danger big-percentage' : gnvDiference30day === 0 ? 'ml-2 text-warning big-percentage' : 'ml-2 text-success big-percentage'}>{gnvDiference30day} R$</span>
+                  <span className={gnvDiference30day > 0 ? 'ml-2 text-danger big-percentage' : gnvDiference30day === 0 ? 'ml-2 text-warning big-percentage' : 'ml-2 text-success big-percentage'}>{gnvDiference30day.toFixed(2)} R$</span>
                 </div>
 
               </div>
