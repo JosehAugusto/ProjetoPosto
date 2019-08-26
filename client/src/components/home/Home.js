@@ -60,28 +60,42 @@ const Home = ({ posto: { postos }, getPostos }) => {
 
       postos.forEach(posto => {
         // arrays usados pro calculo da media hoje e de ontem
-        if (posto.gasolina_comun_price.length > 1) {
+        if (posto.gasolina_comun_price.length > 0) {
           gasolinaComunArrayToday.push(posto.gasolina_comun_price[posto.gasolina_comun_price.length - 1])
+        }
+        if (posto.gasolina_aditivada_price.length > 0) {
+          gasolinaAditivadaArrayToday.push(posto.gasolina_aditivada_price[posto.gasolina_aditivada_price.length - 1])
+        }
+        if (posto.etanol_price.length > 0) {
+          etanolArrayToday.push(posto.etanol_price[posto.etanol_price.length - 1])
+        }
+        if (posto.gnv_price.length > 0) {
+          gnvArrayToday.push(posto.gnv_price[posto.gnv_price.length - 1])
+        }
+        if (posto.diesel_price.length > 0) {
+          dieselArrayToday.push(posto.diesel_price[posto.diesel_price.length - 1])
+        }
+        if (posto.alcool_price.length > 0) {
+          alcoolArrayToday.push(posto.alcool_price[posto.alcool_price.length - 1])
+        }
+
+        // arrays usados pro calculo da media de ontem
+        if (posto.gasolina_comun_price.length > 1) {
           gasolinaComunArrayYesterday.push(posto.gasolina_comun_price[posto.gasolina_comun_price.length - 2])
         }
         if (posto.gasolina_aditivada_price.length > 1) {
-          gasolinaAditivadaArrayToday.push(posto.gasolina_aditivada_price[posto.gasolina_aditivada_price.length - 1])
           gasolinaAditivadaArrayYesterday.push(posto.gasolina_aditivada_price[posto.gasolina_aditivada_price.length - 2])
         }
         if (posto.etanol_price.length > 1) {
-          etanolArrayToday.push(posto.etanol_price[posto.etanol_price.length - 1])
           etanolArrayYesterday.push(posto.etanol_price[posto.etanol_price.length - 2])
         }
         if (posto.gnv_price.length > 1) {
-          gnvArrayToday.push(posto.gnv_price[posto.gnv_price.length - 1])
           gnvArrayYesterday.push(posto.gnv_price[posto.gnv_price.length - 2])
         }
         if (posto.diesel_price.length > 1) {
-          dieselArrayToday.push(posto.diesel_price[posto.diesel_price.length - 1])
           dieselArrayYesterday.push(posto.diesel_price[posto.diesel_price.length - 2])
         }
         if (posto.alcool_price.length > 1) {
-          alcoolArrayToday.push(posto.alcool_price[posto.alcool_price.length - 1])
           alcoolArrayYesterday.push(posto.alcool_price[posto.alcool_price.length - 2])
         }
         // arrays usados pro calculo da media de 30 dias atras
