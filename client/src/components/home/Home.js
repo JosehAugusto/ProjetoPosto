@@ -105,137 +105,160 @@ const Home = ({ posto: { postos }, getPostos }) => {
         }
       });
 
+      let size;
+      let size2;
+      let size3;
+      let val;
+      let val2;
+      let val3;
+
       // gasolina comun hoje
-      let size = gasolinaComunArrayToday.length
-      let val = gasolinaComunArrayToday.reduce((previous, current) => current += previous);
-      val = val / size;
-      gasolinaComunAvgToday = val
-
+      if(gasolinaComunArrayToday.length > 0){
+        size = gasolinaComunArrayToday.length
+        val = gasolinaComunArrayToday.reduce((previous, current) => current += previous);
+        val = val / size;
+        gasolinaComunAvgToday = val
+      }
+      
       // gasolina comun diferença de ontem pra hoje
-
-      let size2 = gasolinaComunArrayYesterday.length
-      let val2 = gasolinaComunArrayYesterday.reduce((previous, current) => current += previous);
-      val2 = val2 / size2;
-
+      if(gasolinaComunArrayYesterday.length > 0){
+        size2 = gasolinaComunArrayYesterday.length
+        val2 = gasolinaComunArrayYesterday.reduce((previous, current) => current += previous);
+        val2 = val2 / size2;
+      }
+      
       // gasolina comun diferença de ontem pra 30 dias
-      if (gasolinaComunArray30day.length > 30) {
-        let size3 = gasolinaComunArray30day.length
-        let val3 = gasolinaComunArray30day.reduce((previous, current) => current += previous);
+      if (gasolinaComunArray30day.length > 0) {
+        size3 = gasolinaComunArray30day.length
+        val3 = gasolinaComunArray30day.reduce((previous, current) => current += previous);
         val3 = val3 / size3;
 
         gasolinaComunDiference30day = val - val3
       }
 
       // gasolina aditivada hoje
+      if(gasolinaAditivadaArrayToday.length > 0){
       size = gasolinaAditivadaArrayToday.length
       val = gasolinaAditivadaArrayToday.reduce((previous, current) => current += previous);
       val = val / size;
       gasolinaAditivadaAvgToday = val
+      }
 
       // gasolina aditivada diferença de ontem pra hoje
-
+      if(gasolinaAditivadaArrayYesterday.length > 0){
       size2 = gasolinaAditivadaArrayYesterday.length
       val2 = gasolinaAditivadaArrayYesterday.reduce((previous, current) => current += previous);
       val2 = val2 / size2;
 
       gasolinaAditivadaDiferenceYesterday = val - val2
-
+      }
       // gasolina aditivada diferença de ontem pra 30 dias
-      if (gasolinaAditivadaArray30day.length > 30) {
-        let size3 = gasolinaAditivadaArray30day.length
-        let val3 = gasolinaAditivadaArray30day.reduce((previous, current) => current += previous);
+      if (gasolinaAditivadaArray30day.length > 0) {
+        size3 = gasolinaAditivadaArray30day.length
+        val3 = gasolinaAditivadaArray30day.reduce((previous, current) => current += previous);
         val3 = val3 / size3;
 
         gasolinaAditivadaDiference30day = val - val3
       }
 
       // etanol hoje
+      if(etanolArrayToday.length > 0){
       size = etanolArrayToday.length
       val = etanolArrayToday.reduce((previous, current) => current += previous);
       val = val / size;
       etanolAvgToday = val
+      }
 
       // etanol diferença de ontem pra hoje
-
+      if(etanolArrayYesterday.length > 0){  
       size2 = etanolArrayYesterday.length
       val2 = etanolArrayYesterday.reduce((previous, current) => current += previous);
       val2 = val2 / size2;
 
       etanolDiferenceYesterday = val - val2
-
+      }
       // etanol diferença de ontem pra 30 dias
-      if (etanolArray30day.length > 30) {
-        let size3 = etanolArray30day.length
-        let val3 = etanolArray30day.reduce((previous, current) => current += previous);
+      if (etanolArray30day.length > 0) {
+        size3 = etanolArray30day.length
+        val3 = etanolArray30day.reduce((previous, current) => current += previous);
         val3 = val3 / size3;
 
         etanolDiference30day = val - val3
       }
 
       // gnv hoje
+      if(gnvArrayToday.length > 0){
       size = gnvArrayToday.length
       val = gnvArrayToday.reduce((previous, current) => current += previous);
       val = val / size;
       gnvAvgToday = val
+      }
 
       // gnv diferença de ontem pra hoje
-
+      if(gnvArrayYesterday.length > 0){
       size2 = gnvArrayYesterday.length
       val2 = gnvArrayYesterday.reduce((previous, current) => current += previous);
       val2 = val2 / size2;
 
       gnvDiferenceYesterday = val - val2
+      }
 
       // gnv diferença de ontem pra 30 dias
-      if (gnvArray30day.length > 30) {
-        let size3 = gnvArray30day.length
-        let val3 = gnvArray30day.reduce((previous, current) => current += previous);
+      if (gnvArray30day.length > 0) {
+        size3 = gnvArray30day.length
+        val3 = gnvArray30day.reduce((previous, current) => current += previous);
         val3 = val3 / size3;
 
         gnvDiference30day = val - val3
       }
 
       // diesel hoje
+      if(dieselArrayToday.length > 0){
       size = dieselArrayToday.length
       val = dieselArrayToday.reduce((previous, current) => current += previous);
       val = val / size;
       dieselAvgToday = val
+      }
 
       // diesel diferença de ontem pra hoje
-
+      if(dieselArrayYesterday.length > 0){
       size2 = dieselArrayYesterday.length
       val2 = dieselArrayYesterday.reduce((previous, current) => current += previous);
       val2 = val2 / size2;
 
       dieselDiferenceYesterday = val - val2
+      }
 
       // diesel diferença de ontem pra 30 dias
-      if (dieselArray30day.length > 30) {
-        let size3 = dieselArray30day.length
-        let val3 = dieselArray30day.reduce((previous, current) => current += previous);
+      if (dieselArray30day.length > 0) {
+        size3 = dieselArray30day.length
+        val3 = dieselArray30day.reduce((previous, current) => current += previous);
         val3 = val3 / size3;
 
         dieselDiference30day = val - val3
       }
 
       // alcool hoje
+      if(alcoolArrayToday.length > 0){
       size = alcoolArrayToday.length
       val = alcoolArrayToday.reduce((previous, current) => current += previous);
       val = val / size;
       alcoolAvgToday = val
+      }
 
       // alcool diferença de ontem pra hoje
-
+      if(alcoolArrayYesterday.length > 0){
       size2 = alcoolArrayYesterday.length
       val2 = alcoolArrayYesterday.reduce((previous, current) => current += previous);
       val2 = val2 / size2;
 
       alcoolDiferenceYesterday = val - val2
+      }
 
       // alcool diferença de ontem pra 30 dias
-      if (alcoolArray30day.length > 30) {
-        let size3 = alcoolArray30day.length
-        let val3 = alcoolArray30day.reduce((previous, current) => current += previous);
+      if (alcoolArray30day.length > 0) {
+        size3 = alcoolArray30day.length
+        val3 = alcoolArray30day.reduce((previous, current) => current += previous);
         val3 = val3 / size3;
 
         alcoolDiference30day = val - val3
