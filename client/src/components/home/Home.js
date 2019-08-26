@@ -118,7 +118,7 @@ const Home = ({ posto: { postos }, getPostos }) => {
       val2 = val2 / size2;
 
       // gasolina comun diferença de ontem pra 30 dias
-      if (gasolinaComunArray30day.length > 0) {
+      if (gasolinaComunArray30day.length > 30) {
         let size3 = gasolinaComunArray30day.length
         let val3 = gasolinaComunArray30day.reduce((previous, current) => current += previous);
         val3 = val3 / size3;
@@ -141,7 +141,7 @@ const Home = ({ posto: { postos }, getPostos }) => {
       gasolinaAditivadaDiferenceYesterday = val - val2
 
       // gasolina aditivada diferença de ontem pra 30 dias
-      if (gasolinaAditivadaArray30day.length > 0) {
+      if (gasolinaAditivadaArray30day.length > 30) {
         let size3 = gasolinaAditivadaArray30day.length
         let val3 = gasolinaAditivadaArray30day.reduce((previous, current) => current += previous);
         val3 = val3 / size3;
@@ -164,7 +164,7 @@ const Home = ({ posto: { postos }, getPostos }) => {
       etanolDiferenceYesterday = val - val2
 
       // etanol diferença de ontem pra 30 dias
-      if (etanolArray30day.length > 0) {
+      if (etanolArray30day.length > 30) {
         let size3 = etanolArray30day.length
         let val3 = etanolArray30day.reduce((previous, current) => current += previous);
         val3 = val3 / size3;
@@ -187,7 +187,7 @@ const Home = ({ posto: { postos }, getPostos }) => {
       gnvDiferenceYesterday = val - val2
 
       // gnv diferença de ontem pra 30 dias
-      if (gnvArray30day.length > 0) {
+      if (gnvArray30day.length > 30) {
         let size3 = gnvArray30day.length
         let val3 = gnvArray30day.reduce((previous, current) => current += previous);
         val3 = val3 / size3;
@@ -210,7 +210,7 @@ const Home = ({ posto: { postos }, getPostos }) => {
       dieselDiferenceYesterday = val - val2
 
       // diesel diferença de ontem pra 30 dias
-      if (dieselArray30day.length > 0) {
+      if (dieselArray30day.length > 30) {
         let size3 = dieselArray30day.length
         let val3 = dieselArray30day.reduce((previous, current) => current += previous);
         val3 = val3 / size3;
@@ -233,7 +233,7 @@ const Home = ({ posto: { postos }, getPostos }) => {
       alcoolDiferenceYesterday = val - val2
 
       // alcool diferença de ontem pra 30 dias
-      if (alcoolArray30day.length > 0) {
+      if (alcoolArray30day.length > 30) {
         let size3 = alcoolArray30day.length
         let val3 = alcoolArray30day.reduce((previous, current) => current += previous);
         val3 = val3 / size3;
@@ -242,7 +242,6 @@ const Home = ({ posto: { postos }, getPostos }) => {
       }
     }
   }
-
   return (
     <div>
       {calc()}
@@ -269,7 +268,9 @@ const Home = ({ posto: { postos }, getPostos }) => {
                 </div>
               </div>
               <div className="py-3">
+                {/*
                 <a href="#" className="btn btn-outline-dark"><i className="fas fa-chart-line mr-2"></i>Histórico</a>
+                */}
               </div>
             </div>
           </div>
@@ -295,7 +296,9 @@ const Home = ({ posto: { postos }, getPostos }) => {
 
               </div>
               <div className="py-3">
-                <a href="#" className="btn btn-outline-dark"><i className="fas fa-chart-line mr-2"></i>Histórico</a>
+                  {/*
+                    <a href="#" className="btn btn-outline-dark"><i className="fas fa-chart-line mr-2"></i>Histórico</a>
+                  */} 
               </div>
             </div>
           </div>
@@ -321,7 +324,9 @@ const Home = ({ posto: { postos }, getPostos }) => {
 
               </div>
               <div className="py-3">
+                {/*
                 <a href="#" className="btn btn-outline-dark"><i className="fas fa-chart-line mr-2"></i>Histórico</a>
+                */}
               </div>
             </div>
           </div>
@@ -347,7 +352,9 @@ const Home = ({ posto: { postos }, getPostos }) => {
 
               </div>
               <div className="py-3">
+                {/*
                 <a href="#" className="btn btn-outline-dark"><i className="fas fa-chart-line mr-2"></i>Histórico</a>
+                */}
               </div>
             </div>
           </div>
@@ -373,7 +380,9 @@ const Home = ({ posto: { postos }, getPostos }) => {
 
               </div>
               <div className="py-3">
+                {/*
                 <a href="#" className="btn btn-outline-dark"><i className="fas fa-chart-line mr-2"></i>Histórico</a>
+                */}
               </div>
             </div>
           </div>
@@ -399,7 +408,9 @@ const Home = ({ posto: { postos }, getPostos }) => {
 
               </div>
               <div className="py-3">
+                {/*
                 <a href="#" className="btn btn-outline-dark"><i className="fas fa-chart-line mr-2"></i>Histórico</a>
+                */}
               </div>
             </div>
           </div>
