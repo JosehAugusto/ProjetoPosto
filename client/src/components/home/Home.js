@@ -29,27 +29,20 @@ const Home = ({ posto: { postos }, getPostos }) => {
   let dieselDiference30day = 0;
   let alcoolDiference30day = 0;
 
-  let chartData = {
-    labels: ['22/08', '23/08', '24/08', '25/08', '26/08', '27/08', '28/08', '29/08'],
-    datasets: [{
-      label: 'Gasolina Comum',
-      data: [1, 2, 3, 4, 5, 6, 7, 8
-      ],
-      fill: false,
-      borderColor: "red"
-    }, {
-      label: 'Gasolina Aditivada',
-      data: [2, 12, 8, 5, 3, 18, 20, 24
-      ],
-      fill: false,
-      borderColor: "blue"
-    }]
-  }
+  let chartData = null;
 
   let options = {
+    title: {
+      display: true,
+      text: 'Variação de preço dos principais tipos de combustiveis'
+    },
     responsive: true,
     scales: {
       yAxes: [{
+        scaleLabel: {
+          display: true,
+          labelString: 'Preço (em reais)'
+        },
         ticks: {
           beginAtZero: true
         }
@@ -65,7 +58,7 @@ const Home = ({ posto: { postos }, getPostos }) => {
 
 
   const novoCalc = () => {
-    if(postos){
+    if (postos) {
 
       // arrays que guardam as medias dos 31 dias
       let gasolinaComunAvgsArray = [];
@@ -80,7 +73,7 @@ const Home = ({ posto: { postos }, getPostos }) => {
       let count;
 
       // Mostrando os ultimos count+1 dias
-      for (count = 30; count > -1; count--) { 
+      for (count = 30; count > -1; count--) {
         // arrays que guardam os preços dos postos por dia
         let gasolinaComunPricesArray = [];
         let gasolinaAditivadaPricesArray = [];
@@ -110,36 +103,86 @@ const Home = ({ posto: { postos }, getPostos }) => {
           }
         });
 
-        if(gasolinaComunPricesArray.length > 0){
+        if (gasolinaComunPricesArray.length > 0) {
           size = gasolinaComunPricesArray.length;
           sum = gasolinaComunPricesArray.reduce((previous, current) => current += previous);
-          gasolinaComunAvgsArray.push(sum/size);
+          gasolinaComunAvgsArray.push(sum / size);
         }
-        if(gasolinaAditivadaPricesArray.length > 0){
+        if (gasolinaAditivadaPricesArray.length > 0) {
           size = gasolinaAditivadaPricesArray.length;
           sum = gasolinaAditivadaPricesArray.reduce((previous, current) => current += previous);
-          gasolinaAditivadaAvgsArray.push(sum/size);
+          gasolinaAditivadaAvgsArray.push(sum / size);
         }
-        if(etanolPricesArray.length > 0){
+        if (etanolPricesArray.length > 0) {
           size = etanolPricesArray.length;
           sum = etanolPricesArray.reduce((previous, current) => current += previous);
-          etanolAvgsArray.push(sum/size);
+          etanolAvgsArray.push(sum / size);
         }
-        if(alcoolPricesArray.length > 0){
+        if (alcoolPricesArray.length > 0) {
           size = alcoolPricesArray.length;
           sum = alcoolPricesArray.reduce((previous, current) => current += previous);
-          alcoolAvgsArray.push(sum/size);
+          alcoolAvgsArray.push(sum / size);
         }
-        if(gnvPricesArray.length > 0){
+        if (gnvPricesArray.length > 0) {
           size = gnvPricesArray.length;
           sum = gnvPricesArray.reduce((previous, current) => current += previous);
-          gnvAvgsArray.push(sum/size);
+          gnvAvgsArray.push(sum / size);
         }
-        if(dieselPricesArray.length > 0){
+        if (dieselPricesArray.length > 0) {
           size = dieselPricesArray.length;
           sum = dieselPricesArray.reduce((previous, current) => current += previous);
-          dieselAvgsArray.push(sum/size);
+          dieselAvgsArray.push(sum / size);
         }
+      }
+
+      let Last30DaysArray = [];
+
+      for (var i = 30; i >= 0; i--) {
+        let date = new Date();
+        date.setDate(date.getDate() - i);
+        let dateString = date.toISOString().split('T')[0]; // "2016-06-08"
+
+        Last30DaysArray.push(dateString);
+      }
+
+      chartData = {
+        labels: Last30DaysArray,
+        datasets: [{
+          label: 'Gasolina Comum',
+          data: gasolinaComunAvgsArray.reverse(),
+          fill: false,
+          borderColor: "#222222"
+        },
+        {
+          label: 'Alcool',
+          data: alcoolAvgsArray.reverse(),
+          fill: false,
+          borderColor: "#2980B9"
+        },
+        {
+          label: 'Etanol',
+          data: etanolAvgsArray.reverse(),
+          fill: false,
+          borderColor: "#27AE60"
+        },
+        {
+          label: 'Diesel',
+          data: dieselAvgsArray.reverse(),
+          fill: false,
+          borderColor: "#dc3545"
+        },
+        {
+          label: 'Gasolina Aditivada',
+          data: gasolinaAditivadaAvgsArray.reverse(),
+          fill: false,
+          borderColor: "#17a2b8"
+        },
+        {
+          label: 'GNV',
+          data: gnvAvgsArray.reverse(),
+          fill: false,
+          borderColor: "#9999ff"
+        }]
       }
 
       gasolinaComunDiferenceYesterday = gasolinaComunAvgsArray[1];
@@ -148,9 +191,9 @@ const Home = ({ posto: { postos }, getPostos }) => {
       gnvDiferenceYesterday = gnvAvgsArray[1];
       dieselDiferenceYesterday = dieselAvgsArray[1];
       alcoolDiferenceYesterday = alcoolAvgsArray[1];
-      
+
       gasolinaComunDiference30day = gasolinaComunAvgsArray[30];
-      gasolinaAditivadaDiference30day =  gasolinaAditivadaAvgsArray[30];
+      gasolinaAditivadaDiference30day = gasolinaAditivadaAvgsArray[30];
       etanolDiference30day = etanolAvgsArray[30];
       gnvDiference30day = gnvAvgsArray[30];
       dieselDiference30day = dieselAvgsArray[30];
@@ -167,7 +210,7 @@ const Home = ({ posto: { postos }, getPostos }) => {
       console.log(gasolinaComunAvgsArray);
     }
   }
-  
+
   return (
     <div>
       {novoCalc()}
