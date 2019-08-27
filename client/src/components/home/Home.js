@@ -215,9 +215,6 @@ const Home = ({ posto: { postos }, getPostos }) => {
     <div>
       {novoCalc()}
       <div className="container my-4">
-        <div>
-          <Line data={chartData} options={options} />
-        </div>
         <div className="row">
           <div className="col-xs-12 col-md-6 col-lg-4 mb-2">
             <div className="card mx-2 shadow-lg text-center">
@@ -386,6 +383,9 @@ const Home = ({ posto: { postos }, getPostos }) => {
               </div>
             </div>
           </div>
+        </div>
+        <div class="mt-4">
+          <Line data={chartData} options={options} />
         </div>
       </div>
     </div>
