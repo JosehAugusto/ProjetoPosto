@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getPostos } from '../../actions/postoActions';
+import { Line } from 'react-chartjs-2';
 //import { set } from 'mongoose';
 
 const Home = ({ posto: { postos }, getPostos }) => {
@@ -28,6 +29,34 @@ const Home = ({ posto: { postos }, getPostos }) => {
   let dieselDiference30day = 0;
   let alcoolDiference30day = 0;
 
+  let chartData = {
+    labels: ['22/08', '23/08', '24/08', '25/08', '26/08', '27/08', '28/08', '29/08'],
+    datasets: [{
+      label: 'Gasolina Comum',
+      data: [1, 2, 3, 4, 5, 6, 7, 8
+      ],
+      fill: false,
+      borderColor: "red"
+    }, {
+      label: 'Gasolina Aditivada',
+      data: [2, 12, 8, 5, 3, 18, 20, 24
+      ],
+      fill: false,
+      borderColor: "blue"
+    }]
+  }
+
+  let options = {
+    responsive: true,
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true
+        }
+      }]
+    }
+  }
+
 
   useEffect(() => {
     getPostos()
@@ -36,7 +65,7 @@ const Home = ({ posto: { postos }, getPostos }) => {
 
 
   const novoCalc = () => {
-    if(postos){
+    if (postos) {
 
       // arrays que guardam as medias dos 31 dias
       let gasolinaComunAvgsArray = [];
@@ -45,24 +74,24 @@ const Home = ({ posto: { postos }, getPostos }) => {
       let sum = 0;
       let count;
 
-      for (count = 0; count < 31; count++) { 
+      for (count = 0; count < 31; count++) {
         // arrays que guardam os preços dos postos por dia
         let gasolinaComunPricesArray = [];
-        
+
         postos.forEach(posto => {
           if (posto.gasolina_comun_price.length > count) {
             gasolinaComunPricesArray.push(posto.gasolina_comun_price[count])
           }
         });
 
-        if(gasolinaComunPricesArray.length > 0){
+        if (gasolinaComunPricesArray.length > 0) {
           size = gasolinaComunPricesArray.length;
           sum = gasolinaComunPricesArray.reduce((previous, current) => current += previous);
 
           //Media do dia count, 0 = ultimo 30 = primeiro
-          gasolinaComunAvgsArray.push(sum/size);
+          gasolinaComunAvgsArray.push(sum / size);
         }
-      
+
       }
 
       console.log(gasolinaComunAvgsArray);
@@ -162,22 +191,22 @@ const Home = ({ posto: { postos }, getPostos }) => {
       let val3;
 
       // gasolina comun hoje
-      if(gasolinaComunArrayToday.length > 0){
+      if (gasolinaComunArrayToday.length > 0) {
         size = gasolinaComunArrayToday.length
         val = gasolinaComunArrayToday.reduce((previous, current) => current += previous);
         val = val / size;
         gasolinaComunAvgToday = val
       }
-      
+
       // gasolina comun diferença de ontem pra hoje
-      if(gasolinaComunArrayYesterday.length > 0){
+      if (gasolinaComunArrayYesterday.length > 0) {
         size2 = gasolinaComunArrayYesterday.length
         val2 = gasolinaComunArrayYesterday.reduce((previous, current) => current += previous);
         val2 = val2 / size2;
 
         gasolinaComunDiferenceYesterday = val - val2
       }
-      
+
       // gasolina comun diferença de ontem pra 30 dias
       if (gasolinaComunArray30day.length > 0) {
         size3 = gasolinaComunArray30day.length
@@ -188,20 +217,20 @@ const Home = ({ posto: { postos }, getPostos }) => {
       }
 
       // gasolina aditivada hoje
-      if(gasolinaAditivadaArrayToday.length > 0){
-      size = gasolinaAditivadaArrayToday.length
-      val = gasolinaAditivadaArrayToday.reduce((previous, current) => current += previous);
-      val = val / size;
-      gasolinaAditivadaAvgToday = val
+      if (gasolinaAditivadaArrayToday.length > 0) {
+        size = gasolinaAditivadaArrayToday.length
+        val = gasolinaAditivadaArrayToday.reduce((previous, current) => current += previous);
+        val = val / size;
+        gasolinaAditivadaAvgToday = val
       }
 
       // gasolina aditivada diferença de ontem pra hoje
-      if(gasolinaAditivadaArrayYesterday.length > 0){
-      size2 = gasolinaAditivadaArrayYesterday.length
-      val2 = gasolinaAditivadaArrayYesterday.reduce((previous, current) => current += previous);
-      val2 = val2 / size2;
+      if (gasolinaAditivadaArrayYesterday.length > 0) {
+        size2 = gasolinaAditivadaArrayYesterday.length
+        val2 = gasolinaAditivadaArrayYesterday.reduce((previous, current) => current += previous);
+        val2 = val2 / size2;
 
-      gasolinaAditivadaDiferenceYesterday = val - val2
+        gasolinaAditivadaDiferenceYesterday = val - val2
       }
       // gasolina aditivada diferença de ontem pra 30 dias
       if (gasolinaAditivadaArray30day.length > 0) {
@@ -213,20 +242,20 @@ const Home = ({ posto: { postos }, getPostos }) => {
       }
 
       // etanol hoje
-      if(etanolArrayToday.length > 0){
-      size = etanolArrayToday.length
-      val = etanolArrayToday.reduce((previous, current) => current += previous);
-      val = val / size;
-      etanolAvgToday = val
+      if (etanolArrayToday.length > 0) {
+        size = etanolArrayToday.length
+        val = etanolArrayToday.reduce((previous, current) => current += previous);
+        val = val / size;
+        etanolAvgToday = val
       }
 
       // etanol diferença de ontem pra hoje
-      if(etanolArrayYesterday.length > 0){  
-      size2 = etanolArrayYesterday.length
-      val2 = etanolArrayYesterday.reduce((previous, current) => current += previous);
-      val2 = val2 / size2;
+      if (etanolArrayYesterday.length > 0) {
+        size2 = etanolArrayYesterday.length
+        val2 = etanolArrayYesterday.reduce((previous, current) => current += previous);
+        val2 = val2 / size2;
 
-      etanolDiferenceYesterday = val - val2
+        etanolDiferenceYesterday = val - val2
       }
       // etanol diferença de ontem pra 30 dias
       if (etanolArray30day.length > 0) {
@@ -238,20 +267,20 @@ const Home = ({ posto: { postos }, getPostos }) => {
       }
 
       // gnv hoje
-      if(gnvArrayToday.length > 0){
-      size = gnvArrayToday.length
-      val = gnvArrayToday.reduce((previous, current) => current += previous);
-      val = val / size;
-      gnvAvgToday = val
+      if (gnvArrayToday.length > 0) {
+        size = gnvArrayToday.length
+        val = gnvArrayToday.reduce((previous, current) => current += previous);
+        val = val / size;
+        gnvAvgToday = val
       }
 
       // gnv diferença de ontem pra hoje
-      if(gnvArrayYesterday.length > 0){
-      size2 = gnvArrayYesterday.length
-      val2 = gnvArrayYesterday.reduce((previous, current) => current += previous);
-      val2 = val2 / size2;
+      if (gnvArrayYesterday.length > 0) {
+        size2 = gnvArrayYesterday.length
+        val2 = gnvArrayYesterday.reduce((previous, current) => current += previous);
+        val2 = val2 / size2;
 
-      gnvDiferenceYesterday = val - val2
+        gnvDiferenceYesterday = val - val2
       }
 
       // gnv diferença de ontem pra 30 dias
@@ -264,20 +293,20 @@ const Home = ({ posto: { postos }, getPostos }) => {
       }
 
       // diesel hoje
-      if(dieselArrayToday.length > 0){
-      size = dieselArrayToday.length
-      val = dieselArrayToday.reduce((previous, current) => current += previous);
-      val = val / size;
-      dieselAvgToday = val
+      if (dieselArrayToday.length > 0) {
+        size = dieselArrayToday.length
+        val = dieselArrayToday.reduce((previous, current) => current += previous);
+        val = val / size;
+        dieselAvgToday = val
       }
 
       // diesel diferença de ontem pra hoje
-      if(dieselArrayYesterday.length > 0){
-      size2 = dieselArrayYesterday.length
-      val2 = dieselArrayYesterday.reduce((previous, current) => current += previous);
-      val2 = val2 / size2;
+      if (dieselArrayYesterday.length > 0) {
+        size2 = dieselArrayYesterday.length
+        val2 = dieselArrayYesterday.reduce((previous, current) => current += previous);
+        val2 = val2 / size2;
 
-      dieselDiferenceYesterday = val - val2
+        dieselDiferenceYesterday = val - val2
       }
 
       // diesel diferença de ontem pra 30 dias
@@ -290,20 +319,20 @@ const Home = ({ posto: { postos }, getPostos }) => {
       }
 
       // alcool hoje
-      if(alcoolArrayToday.length > 0){
-      size = alcoolArrayToday.length
-      val = alcoolArrayToday.reduce((previous, current) => current += previous);
-      val = val / size;
-      alcoolAvgToday = val
+      if (alcoolArrayToday.length > 0) {
+        size = alcoolArrayToday.length
+        val = alcoolArrayToday.reduce((previous, current) => current += previous);
+        val = val / size;
+        alcoolAvgToday = val
       }
 
       // alcool diferença de ontem pra hoje
-      if(alcoolArrayYesterday.length > 0){
-      size2 = alcoolArrayYesterday.length
-      val2 = alcoolArrayYesterday.reduce((previous, current) => current += previous);
-      val2 = val2 / size2;
+      if (alcoolArrayYesterday.length > 0) {
+        size2 = alcoolArrayYesterday.length
+        val2 = alcoolArrayYesterday.reduce((previous, current) => current += previous);
+        val2 = val2 / size2;
 
-      alcoolDiferenceYesterday = val - val2
+        alcoolDiferenceYesterday = val - val2
       }
 
       // alcool diferença de ontem pra 30 dias
@@ -321,6 +350,9 @@ const Home = ({ posto: { postos }, getPostos }) => {
       {calc()}
       {novoCalc()}
       <div className="container my-4">
+        <div>
+          <Line data={chartData} options={options} />
+        </div>
         <div className="row">
           <div className="col-xs-12 col-md-6 col-lg-4 mb-2">
             <div className="card mx-2 shadow-lg text-center">
@@ -371,9 +403,9 @@ const Home = ({ posto: { postos }, getPostos }) => {
 
               </div>
               <div className="py-3">
-                  {/*
+                {/*
                     <a href="#" className="btn btn-outline-dark"><i className="fas fa-chart-line mr-2"></i>Histórico</a>
-                  */} 
+                  */}
               </div>
             </div>
           </div>
