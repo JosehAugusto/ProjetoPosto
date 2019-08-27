@@ -65,36 +65,104 @@ const Home = ({ posto: { postos }, getPostos }) => {
 
 
   const novoCalc = () => {
-    if (postos) {
+    if(postos){
 
       // arrays que guardam as medias dos 31 dias
       let gasolinaComunAvgsArray = [];
+      let gasolinaAditivadaAvgsArray = [];
+      let etanolAvgsArray = [];
+      let alcoolAvgsArray = [];
+      let gnvAvgsArray = [];
+      let dieselAvgsArray = [];
 
       let size = 0;
       let sum = 0;
       let count;
 
-      for (count = 0; count < 31; count++) {
+      // Mostrando os ultimos count+1 dias
+      for (count = 30; count > -1; count--) { 
         // arrays que guardam os preços dos postos por dia
         let gasolinaComunPricesArray = [];
+        let gasolinaAditivadaPricesArray = [];
+        let etanolPricesArray = [];
+        let alcoolPricesArray = [];
+        let gnvPricesArray = [];
+        let dieselPricesArray = [];
 
         postos.forEach(posto => {
           if (posto.gasolina_comun_price.length > count) {
             gasolinaComunPricesArray.push(posto.gasolina_comun_price[count])
           }
+          if (posto.gasolina_aditivada_price.length > count) {
+            gasolinaAditivadaPricesArray.push(posto.gasolina_aditivada_price[count])
+          }
+          if (posto.etanol_price.length > count) {
+            etanolPricesArray.push(posto.etanol_price[count])
+          }
+          if (posto.alcool_price.length > count) {
+            alcoolPricesArray.push(posto.alcool_price[count])
+          }
+          if (posto.gnv_price.length > count) {
+            gnvPricesArray.push(posto.gnv_price[count])
+          }
+          if (posto.diesel_price.length > count) {
+            dieselPricesArray.push(posto.diesel_price[count])
+          }
         });
 
-        if (gasolinaComunPricesArray.length > 0) {
+        if(gasolinaComunPricesArray.length > 0){
           size = gasolinaComunPricesArray.length;
           sum = gasolinaComunPricesArray.reduce((previous, current) => current += previous);
-
-          //Media do dia count, 0 = ultimo 30 = primeiro
-          gasolinaComunAvgsArray.push(sum / size);
+          gasolinaComunAvgsArray.push(sum/size);
         }
-
+        if(gasolinaAditivadaPricesArray.length > 0){
+          size = gasolinaAditivadaPricesArray.length;
+          sum = gasolinaAditivadaPricesArray.reduce((previous, current) => current += previous);
+          gasolinaAditivadaAvgsArray.push(sum/size);
+        }
+        if(etanolPricesArray.length > 0){
+          size = etanolPricesArray.length;
+          sum = etanolPricesArray.reduce((previous, current) => current += previous);
+          etanolAvgsArray.push(sum/size);
+        }
+        if(alcoolPricesArray.length > 0){
+          size = alcoolPricesArray.length;
+          sum = alcoolPricesArray.reduce((previous, current) => current += previous);
+          alcoolAvgsArray.push(sum/size);
+        }
+        if(gnvPricesArray.length > 0){
+          size = gnvPricesArray.length;
+          sum = gnvPricesArray.reduce((previous, current) => current += previous);
+          gnvAvgsArray.push(sum/size);
+        }
+        if(dieselPricesArray.length > 0){
+          size = dieselPricesArray.length;
+          sum = dieselPricesArray.reduce((previous, current) => current += previous);
+          dieselAvgsArray.push(sum/size);
+        }
       }
 
-      console.log(gasolinaComunAvgsArray);
+      gasolinaComunDiferenceYesterday = gasolinaComunAvgsArray[29];
+      gasolinaAditivadaDiferenceYesterday = gasolinaAditivadaAvgsArray[29];
+      etanolDiferenceYesterday = etanolAvgsArray[29];
+      gnvDiferenceYesterday = gnvAvgsArray[29];
+      dieselDiferenceYesterday = dieselAvgsArray[29];
+      alcoolDiferenceYesterday = alcoolAvgsArray[29];
+      
+      gasolinaComunDiference30day = gasolinaComunAvgsArray[0];
+      gasolinaAditivadaDiference30day =  gasolinaAditivadaAvgsArray[0];
+      etanolDiference30day = etanolAvgsArray[0];
+      gnvDiference30day = gnvAvgsArray[0];
+      dieselDiference30day = dieselAvgsArray[0];
+      alcoolDiference30day = alcoolAvgsArray[0];
+
+      gasolinaComunAvgToday = gasolinaComunAvgsArray[30];
+      gasolinaAditivadaAvgToday = gasolinaAditivadaAvgsArray[30];
+      etanolAvgToday = etanolAvgsArray[30];
+      gnvAvgToday = gnvAvgsArray[30];
+      dieselAvgToday = dieselAvgsArray[30];
+      alcoolAvgToday = alcoolAvgsArray[30];
+
     }
   }
 
