@@ -142,27 +142,29 @@ const Home = ({ posto: { postos }, getPostos }) => {
         }
       }
 
-      gasolinaComunDiferenceYesterday = gasolinaComunAvgsArray[29];
-      gasolinaAditivadaDiferenceYesterday = gasolinaAditivadaAvgsArray[29];
-      etanolDiferenceYesterday = etanolAvgsArray[29];
-      gnvDiferenceYesterday = gnvAvgsArray[29];
-      dieselDiferenceYesterday = dieselAvgsArray[29];
-      alcoolDiferenceYesterday = alcoolAvgsArray[29];
+      gasolinaComunDiferenceYesterday = gasolinaComunAvgsArray[1];
+      gasolinaAditivadaDiferenceYesterday = gasolinaAditivadaAvgsArray[1];
+      etanolDiferenceYesterday = etanolAvgsArray[1];
+      gnvDiferenceYesterday = gnvAvgsArray[1];
+      dieselDiferenceYesterday = dieselAvgsArray[1];
+      alcoolDiferenceYesterday = alcoolAvgsArray[1];
       
-      gasolinaComunDiference30day = gasolinaComunAvgsArray[0];
-      gasolinaAditivadaDiference30day =  gasolinaAditivadaAvgsArray[0];
-      etanolDiference30day = etanolAvgsArray[0];
-      gnvDiference30day = gnvAvgsArray[0];
-      dieselDiference30day = dieselAvgsArray[0];
-      alcoolDiference30day = alcoolAvgsArray[0];
+      gasolinaComunDiference30day = gasolinaComunAvgsArray[30];
+      gasolinaAditivadaDiference30day =  gasolinaAditivadaAvgsArray[30];
+      etanolDiference30day = etanolAvgsArray[30];
+      gnvDiference30day = gnvAvgsArray[30];
+      dieselDiference30day = dieselAvgsArray[30];
+      alcoolDiference30day = alcoolAvgsArray[30];
 
-      gasolinaComunAvgToday = gasolinaComunAvgsArray[30];
-      gasolinaAditivadaAvgToday = gasolinaAditivadaAvgsArray[30];
-      etanolAvgToday = etanolAvgsArray[30];
-      gnvAvgToday = gnvAvgsArray[30];
-      dieselAvgToday = dieselAvgsArray[30];
-      alcoolAvgToday = alcoolAvgsArray[30];
+      gasolinaComunAvgToday = gasolinaComunAvgsArray[0];
+      gasolinaAditivadaAvgToday = gasolinaAditivadaAvgsArray[0];
+      etanolAvgToday = etanolAvgsArray[0];
+      gnvAvgToday = gnvAvgsArray[0];
+      dieselAvgToday = dieselAvgsArray[0];
+      alcoolAvgToday = alcoolAvgsArray[0];
 
+
+      console.log(gasolinaComunAvgsArray);
     }
   }
   
