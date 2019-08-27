@@ -34,6 +34,41 @@ const Home = ({ posto: { postos }, getPostos }) => {
     // eslint-disable-next-line
   }, []);
 
+
+  const novoCalc = () => {
+    if(postos){
+
+      // arrays que guardam as medias dos 31 dias
+      let gasolinaComunAvgsArray = [];
+
+      let size = 0;
+      let sum = 0;
+      let count;
+
+      for (count = 0; count < 31; count++) { 
+        // arrays que guardam os preços dos postos por dia
+        let gasolinaComunPricesArray = [];
+        
+        postos.forEach(posto => {
+          if (posto.gasolina_comun_price.length > count) {
+            gasolinaComunPricesArray.push(posto.gasolina_comun_price[count])
+          }
+        });
+
+        if(gasolinaComunPricesArray.length > 0){
+          size = gasolinaComunPricesArray.length;
+          sum = gasolinaComunPricesArray.reduce((previous, current) => current += previous);
+
+          //Media do dia count, 0 = ultimo 30 = primeiro
+          gasolinaComunAvgsArray.push(sum/size);
+        }
+      
+      }
+
+      console.log(gasolinaComunAvgsArray);
+    }
+  }
+
   const calc = () => {
     if (postos) {
 
@@ -284,6 +319,7 @@ const Home = ({ posto: { postos }, getPostos }) => {
   return (
     <div>
       {calc()}
+      {novoCalc()}
       <div className="container my-4">
         <div className="row">
           <div className="col-xs-12 col-md-6 col-lg-4 mb-2">
